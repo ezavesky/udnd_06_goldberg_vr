@@ -26,10 +26,10 @@ public class HandInteraction : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObj.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            SteamVR_LoadLevel.Begin("Scene1");
+            //SteamVR_LoadLevel.Begin("Scene1");
             touchLast = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
         }
-        if (device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
+        if (objectMenuManager && device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
         {         
             touchCurrent = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad).x;
             distance = touchCurrent - touchLast;
@@ -47,7 +47,6 @@ public class HandInteraction : MonoBehaviour {
             }
             if (!hasSwipedLeft)
             {
-
                 if (swipeSum < 0.5f)
                 {
                     swipeSum = 0;
@@ -68,7 +67,10 @@ public class HandInteraction : MonoBehaviour {
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             //Spawn object currently selected by menu
-            SpawnObject();
+            if (objectMenuManager)
+            {
+                SpawnObject();
+            }
         }
 	}
 

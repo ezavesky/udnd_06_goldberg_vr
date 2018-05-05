@@ -10,9 +10,12 @@ public class ObjectMenuManager : MonoBehaviour {
     protected List<GameObject> objectList; //handled automatically at start
 	// Use this for initialization
 	void Start () {
-		foreach(GameObject obj in objectPrefabList)
+        objectList = new List<GameObject>();
+        foreach (GameObject obj in objectPrefabList)
         {
             GameObject objNew = Instantiate(obj, gameObject.transform); //add with menu as parent
+            Rigidbody rigid = objNew.GetComponent<Rigidbody>();
+            rigid.useGravity = false;
             objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
             objectList.Add(objNew); //save for use later
         }
