@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23087751090368264}
   m_Layer: 0
   m_Name: Teleport_Target
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

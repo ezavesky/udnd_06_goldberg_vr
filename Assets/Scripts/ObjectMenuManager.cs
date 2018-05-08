@@ -11,12 +11,22 @@ public class ObjectMenuManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         objectList = new List<GameObject>();
+        bool bFoundFirst = false;
         foreach (GameObject obj in objectPrefabList)
         {
             GameObject objNew = Instantiate(obj, gameObject.transform); //add with menu as parent
             Rigidbody rigid = objNew.GetComponent<Rigidbody>();
             rigid.useGravity = false;
-            objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
+            objNew.transform.localPosition = Vector3.zero;
+            objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+            objNew.GetComponent<Rigidbody>().isKinematic = true;
+            objNew.tag = "Untagged"; // prevent grabbing of object
+
+            if (bFoundFirst) {
+                objNew.SetActive(false);
+            }
+            bFoundFirst = true;
+            //objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
             objectList.Add(objNew); //save for use later
         }
 	}
@@ -49,8 +59,4 @@ public class ObjectMenuManager : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
