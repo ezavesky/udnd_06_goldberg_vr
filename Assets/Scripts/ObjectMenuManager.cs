@@ -12,15 +12,19 @@ public class ObjectMenuManager : MonoBehaviour {
 	void Start () {
         objectList = new List<GameObject>();
         bool bFoundFirst = false;
+
         foreach (GameObject obj in objectPrefabList)
         {
             GameObject objNew = Instantiate(obj, gameObject.transform); //add with menu as parent
             Rigidbody rigid = objNew.GetComponent<Rigidbody>();
-            rigid.useGravity = false;
+            if (rigid)
+            {
+                rigid.useGravity = false;
+                rigid.isKinematic = true;
+                objNew.tag = "Untagged"; // prevent grabbing of object
+            }
             objNew.transform.localPosition = Vector3.zero;
-            objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
-            objNew.GetComponent<Rigidbody>().isKinematic = true;
-            objNew.tag = "Untagged"; // prevent grabbing of object
+            //objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
 
             if (bFoundFirst) {
                 objNew.SetActive(false);
@@ -53,10 +57,17 @@ public class ObjectMenuManager : MonoBehaviour {
     }
     public void SpawnCurrentObject()
     {
-        Instantiate(objectPrefabList[currentObject], 
-            objectList[currentObject].transform.position, 
-            objectList[currentObject].transform.rotation);
+        if (objectPrefabList[currentObject].tag == "Hints")
+        {
+            Debug.Log("HintS");
+        }
+        else
+        {
+            Instantiate(objectPrefabList[currentObject], 
+                objectList[currentObject].transform.position, 
+                objectList[currentObject].transform.rotation);
+        }
 
     }
-	
+
 }

@@ -9,12 +9,12 @@ public class HandInteraction : MonoBehaviour {
 
     //Swipe
     protected float swipeSum;
-    protected float touchLast;
+    protected float touchLast = 0;
     protected float touchCurrent;
     protected float distance;
     protected bool hasSwipedLeft;
     protected bool hasSwipedRight;
-    public ObjectMenuManager objectMenuManager;
+    public ObjectMenuManager objectMenuManager = null;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +61,7 @@ public class HandInteraction : MonoBehaviour {
                 }
                 if (!hasSwipedLeft)
                 {
-                    if (swipeSum < 0.5f)
+                    if (swipeSum < -0.5f)
                     {
                         swipeSum = 0;
                         SwipeLeft();
@@ -115,7 +115,9 @@ public class HandInteraction : MonoBehaviour {
     {
         coli.transform.SetParent(null);
         Rigidbody rigidBody = coli.GetComponent<Rigidbody>();
-        rigidBody.isKinematic = !coli.gameObject.CompareTag("Throwable");
+        bool isStatic = !coli.gameObject.CompareTag("Throwable");
+        rigidBody.isKinematic = isStatic;
+        rigidBody.useGravity = !isStatic;
         rigidBody.velocity = device.velocity * throwForce;
         rigidBody.angularVelocity = device.angularVelocity;
         Debug.Log("You have released the trigger");

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Throwable
   - Collectable
+  - Hints
   layers:
   - Default
   - TransparentFX
