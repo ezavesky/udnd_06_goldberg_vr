@@ -25,10 +25,10 @@ GameObject:
   - component: {fileID: 64626338449629070}
   m_Layer: 0
   m_Name: Tool_Trampoline
-  m_TagString: Collectable
+  m_TagString: Bounce
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4583460405206672
 Transform:

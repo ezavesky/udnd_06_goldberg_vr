@@ -22,7 +22,9 @@ public class StarController : SoundCollider {
 
 	protected override void OnHit(AudioSource audioSrc, GameObject objOther) {
 		base.OnHit(audioSrc, objOther);
-		gameObject.SetActive(false);
+        if (GameManager.instance.normalPlay) {
+    		gameObject.SetActive(false);
+        }
 	}
 
 
