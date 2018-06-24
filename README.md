@@ -5,6 +5,37 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 ## Versions
 - Unity 2017.2.0f3
 
+## Rubric Checks
+### Iniital Setup
+* **SteamVR** - This project supports SteamVR and others via the VRTK
+    * Within the hierarchy, the VRTK resources are located within the `VRHolder` resource
+* **Environment Setup** (Play Zone) - The player is restricted to teleport zones for movement
+    * These positions are the only places that they can release a ball, so there is reduced possibility of cheating
+
+### Teleportation
+* **Visual Indicator** - A teleporter stream is enabled from the left touch pad with a visual arc for the destination.
+* **Player Translation** - The teleporter script is locked to valid teleport zones and maintains the same head distance from the ground upon teleport.
+
+### Grabbing and Throwing
+* **Ball Setup** 
+
+### Object Menu
+* **Menu Next/Previous**
+* **Object Spawning**
+* **Spawned Object Moving**
+* **Multiple Objects**
+
+
+### Grabbing and Throwing
+* Collectable
+* **Goal** - Each level contains a goal object, often at the lowest point in the level.  
+   * When the ball touches the goal (through correct gameplay), fanfare is played and the player can transport to the exit teleport.
+* **Scene Loading** 
+* **Cheat Detection** - For testing of interaction placement, players can clone balls and let them roll from arbitary locations.  
+    * Collectibles reset at each ball release and the only way to complete a level is gather all collectibles.  Therefore, balls released from non-start positions will not gather all collctibles. 
+    * Further, the only valid start position is demarked with a different color teleport zone (*green*) compared to the normal teleporter color (*blue*).  The final teleport zone (*white*) will only transport the user once all collectibles are gone.
+* **Levels**
+
 ## Data Sources
 * [winter hill 360 pano (skybox)](https://flic.kr/p/dU4VgM)
 * [girl in backyard - persona photo](https://www.pexels.com/photo/girl-staring-at-the-sky-630770/)

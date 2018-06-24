@@ -12,6 +12,8 @@ public class GoalController : SoundCollider {
 			rb.isKinematic = true;
 			rb.angularVelocity = Vector3.zero;
 			rb.velocity = Vector3.zero;
+
+            //valid task, enable final teleport!
 		}
 	}
 
