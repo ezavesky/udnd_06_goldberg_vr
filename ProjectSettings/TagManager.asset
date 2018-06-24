@@ -8,6 +8,8 @@ TagManager:
   - Collectable
   - Hints
   - Bounce
+  - ExcludeTeleport
+  - Teleport
   layers:
   - Default
   - TransparentFX
