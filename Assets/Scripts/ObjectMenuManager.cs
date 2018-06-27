@@ -8,6 +8,7 @@ public class ObjectMenuManager : MonoBehaviour {
 
     protected int currentObject = 0;                                       
     protected List<GameObject> objectList; //handled automatically at start
+
 	// Use this for initialization
 	void Start () {
         objectList = new List<GameObject>();
@@ -26,6 +27,12 @@ public class ObjectMenuManager : MonoBehaviour {
             objNew.transform.localPosition = Vector3.zero;
             //objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
 
+            Collider collider = objNew.GetComponent<Collider>();
+            if (collider) 
+            {
+                collider.enabled = false;
+            }
+
             if (bFoundFirst) {
                 objNew.SetActive(false);
             }
@@ -33,7 +40,12 @@ public class ObjectMenuManager : MonoBehaviour {
             //objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
             objectList.Add(objNew); //save for use later
         }
+        MenuVisible(false);
 	}
+
+    public void MenuVisible(bool bNewState) {
+        gameObject.SetActive(bNewState);
+    }
 
     public void MenuLeft()
     {
@@ -57,6 +69,9 @@ public class ObjectMenuManager : MonoBehaviour {
     }
     public void SpawnCurrentObject()
     {
+        if (!gameObject.activeSelf) {
+            return;
+        }
         if (objectPrefabList[currentObject].tag == "Hints")
         {
             Debug.Log("HintS");
@@ -69,5 +84,15 @@ public class ObjectMenuManager : MonoBehaviour {
         }
 
     }
+
+    public void DeleteCurrentObject(GameObject objTarget) 
+    {
+        if (!objTarget) 
+        {
+            return;
+        }
+        Destroy(objTarget);
+    }
+    
 
 }
