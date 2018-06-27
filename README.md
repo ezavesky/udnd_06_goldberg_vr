@@ -24,6 +24,7 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * **Object Spawning** - As soon as the user touches the touch pad an object will appear, but it is not instantiated until a touchpad press is detected.  To **remove** an object, the user can press the touchpad again while an object is being held (*but only with the right hand*).
 * **Spawned Object Moving** - Objects can be grabbed and rotated/moved with the primary trigger.  Balls are unique types of objects that are described above.
 * **Multiple Objects**
+* **Hint Objects** - Each level has a set of hint objects included.  To see them, click and hold down the *left* grip button.  The headset will fade to another color and you will be unable to pick up objects while in hint mode.
 
 
 ### Grabbing and Throwing
