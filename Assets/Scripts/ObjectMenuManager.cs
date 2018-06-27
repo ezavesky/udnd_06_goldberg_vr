@@ -5,8 +5,9 @@ using UnityEngine;
 public class ObjectMenuManager : MonoBehaviour {
     public List<GameObject> objectPrefabList; //set manually in inspector 
     public float scaleMenu = 0.3f;
-
-    protected int currentObject = 0;                                       
+    public GameObject objectRemoveHolder = null;   //place holder to remove an object
+    protected int currentObject = 0;
+    protected int idxTest = 0;  //index of test object
     protected List<GameObject> objectList; //handled automatically at start
 
 	// Use this for initialization
@@ -40,11 +41,29 @@ public class ObjectMenuManager : MonoBehaviour {
             //objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
             objectList.Add(objNew); //save for use later
         }
-        MenuVisible(false);
+        MenuHide();
 	}
 
-    public void MenuVisible(bool bNewState) {
-        gameObject.SetActive(bNewState);
+    public void MenuShow(GameObject objTarget=null) 
+    {
+        if (objTarget != null) 
+        {
+            //do nothing for now, but don't show full menu
+            //StartCoroutine (FadeOut3D(objTarget.transform, 0.2f, false, 0.5f));
+            return;
+        }
+        gameObject.SetActive(true);
+    }
+
+    public void MenuHide(GameObject objTarget=null) 
+    {
+        if (objTarget != null) 
+        {
+            //do nothing for now because other object wasn't dimmed
+            // StartCoroutine (FadeOut3D(objTarget.transform, 1.0f, false, 0.25f));
+            return;
+        }
+        gameObject.SetActive(false);
     }
 
     public void MenuLeft()
@@ -75,6 +94,9 @@ public class ObjectMenuManager : MonoBehaviour {
         if (objectPrefabList[currentObject].tag == "Hints")
         {
             Debug.Log("HintS");
+
+            //have a special type of release that may trigger other items!
+            //normalPlay
         }
         else
         {
@@ -94,5 +116,24 @@ public class ObjectMenuManager : MonoBehaviour {
         Destroy(objTarget);
     }
     
-
+    protected static IEnumerator FadeOut3D (Transform t, float targetAlpha, bool isVanish, float duration)
+    {
+        //https://answers.unity.com/questions/992672/fade-gameobject-alpha-with-standard-shader.html#
+        Renderer sr = t.GetComponent<Renderer> ();
+        float diffAlpha = (targetAlpha - sr.material.color.a);
+ 
+        float counter = 0;
+        while (counter < duration) 
+        {
+            float alphaAmount = sr.material.color.a + (Time.deltaTime * diffAlpha) / duration;
+            sr.material.color = new Color (sr.material.color.r, sr.material.color.g, sr.material.color.b, alphaAmount);
+              counter += Time.deltaTime;
+            yield return null;
+        }
+        sr.material.color = new Color (sr.material.color.r, sr.material.color.g, sr.material.color.b, targetAlpha);
+        if (isVanish) 
+        {
+            sr.transform.gameObject.SetActive (false);
+        }
+    }
 }

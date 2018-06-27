@@ -52,7 +52,7 @@ public class HintToggle: MonoBehaviour  {
 		if (!headsetFade)
 			return;		
 		headsetFade.HeadsetFadeComplete += new HeadsetFadeEventHandler(ActivateHints);
-		headsetFade.Fade(new Color(0.0f, 1.0f, 0.0f, 0.1f), blinkTransitionSpeed);
+		headsetFade.Fade(new Color(1.0f, 1.0f, 1.0f, 0.1f), blinkTransitionSpeed);
 	}
 
 	protected void ActivateHints(object sender, HeadsetFadeEventArgs args) {

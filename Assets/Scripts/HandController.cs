@@ -76,7 +76,12 @@ public class HandController : MonoBehaviour {
     {
         touchAxis = data;
         isTouched = true;
-        objectMenuManager.MenuVisible(true);
+        GameObject objGrabbed = null;
+        if (grabController) 
+        {
+            objGrabbed = grabController.GetGrabbedObject();
+        }
+        objectMenuManager.MenuShow(objGrabbed);
     }   
     
     private void ReleaseTouch()
@@ -86,7 +91,7 @@ public class HandController : MonoBehaviour {
         hasSwipedLeft = false;
         hasSwipedRight = false;
         SetTouchAxis(Vector2.zero);
-        objectMenuManager.MenuVisible(false);
+        objectMenuManager.MenuHide();
     }
 
     private void SpawnCurrentObject()
