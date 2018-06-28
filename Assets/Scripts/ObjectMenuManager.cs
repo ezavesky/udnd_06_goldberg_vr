@@ -4,45 +4,47 @@ using UnityEngine;
 
 public class ObjectMenuManager : MonoBehaviour {
     public List<GameObject> objectPrefabList; //set manually in inspector 
-    public float scaleMenu = 0.3f;
-    public GameObject objectRemoveHolder = null;   //place holder to remove an object
+    public GameObject objectPrefabUnique;  //confirms that there is only ONE instance of this prefab type
     protected int currentObject = 0;
-    protected int idxTest = 0;  //index of test object
     protected List<GameObject> objectList; //handled automatically at start
 
 	// Use this for initialization
 	void Start () {
         objectList = new List<GameObject>();
-        bool bFoundFirst = false;
 
         foreach (GameObject obj in objectPrefabList)
         {
-            GameObject objNew = Instantiate(obj, gameObject.transform); //add with menu as parent
-            Rigidbody rigid = objNew.GetComponent<Rigidbody>();
-            if (rigid)
-            {
-                rigid.useGravity = false;
-                rigid.isKinematic = true;
-                objNew.tag = "Untagged"; // prevent grabbing of object
-            }
-            objNew.transform.localPosition = Vector3.zero;
-            //objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
-
-            Collider collider = objNew.GetComponent<Collider>();
-            if (collider) 
-            {
-                collider.enabled = false;
-            }
-
-            if (bFoundFirst) {
-                objNew.SetActive(false);
-            }
-            bFoundFirst = true;
-            //objNew.transform.localScale = new Vector3(scaleMenu, scaleMenu, scaleMenu);
-            objectList.Add(objNew); //save for use later
+            AddMenuPrefab(obj);
+        }
+        if (objectList.Count != 0) 
+        {
+            objectList[0].SetActive(true);
         }
         MenuHide();
 	}
+
+    protected int AddMenuPrefab(GameObject objPrefab) {
+        GameObject objNew = Instantiate(objPrefab, gameObject.transform); //add with menu as parent
+        Rigidbody rigid = objNew.GetComponent<Rigidbody>();
+        if (rigid)
+        {
+            rigid.useGravity = false;
+            rigid.isKinematic = true;
+            objNew.tag = "Untagged"; // prevent grabbing of object
+        }
+        objNew.transform.localPosition = Vector3.zero;
+        //objNew.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+
+        Collider collider = objNew.GetComponent<Collider>();
+        if (collider) 
+        {
+            collider.enabled = false;
+        }
+
+        objNew.SetActive(false);
+        objectList.Add(objNew); //save for use later
+        return (objectList.Count - 1);
+    }
 
     public void MenuShow(GameObject objTarget=null) 
     {
@@ -91,20 +93,15 @@ public class ObjectMenuManager : MonoBehaviour {
         if (!gameObject.activeSelf) {
             return;
         }
-        if (objectPrefabList[currentObject].tag == "Hints")
-        {
-            Debug.Log("HintS");
-
-            //have a special type of release that may trigger other items!
-            //normalPlay
-        }
-        else
-        {
-            Instantiate(objectPrefabList[currentObject], 
-                objectList[currentObject].transform.position, 
-                objectList[currentObject].transform.rotation);
+        GameManager.instance.state = GameManager.GAME_STATE.STATE_TESTING;       // pulled the object we care about, normal state!
+        GameObject objNew = Instantiate(objectPrefabList[currentObject], 
+            objectList[currentObject].transform.position, 
+            objectList[currentObject].transform.rotation);
+        if (objectPrefabList[currentObject] == objectPrefabUnique) {
+            GameManager.instance.RegisterSingletonBall(objNew);
         }
 
+        //TODO: maybe allow user to immediately grab object if trigger is down?
     }
 
     public void DeleteCurrentObject(GameObject objTarget) 

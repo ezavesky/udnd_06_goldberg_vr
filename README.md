@@ -17,7 +17,7 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * **Player Translation** - The teleporter script is locked to valid teleport zones and maintains the same head distance from the ground upon teleport.
 
 ### Grabbing and Throwing
-* **Ball Setup** 
+* **Ball Setup** - There are two balls to evaluate levels with.  The only one that will collect stars (*red colored*) is right next to the start platform for each level.  Another is available in the tool/item menu as a testing mechanism.  It will not collect stars or trigger an end of level if utilized.
 
 ### Object Menu
 * **Menu Next/Previous** - A menu can be swiped left and right to change the next object to be instantiated.  

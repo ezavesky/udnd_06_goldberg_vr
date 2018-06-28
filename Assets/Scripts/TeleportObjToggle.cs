@@ -31,7 +31,7 @@ public class TeleportObjToggle : MonoBehaviour
         if (newState) {
             if (clipStart) 
             {
-            
+                //start playing back a 'pending' loop
 
             }
         }

@@ -32,6 +32,7 @@ public class HintToggle: MonoBehaviour  {
 
 	public void EnableHints() 
 	{
+        GameManager.instance.state = GameManager.GAME_STATE.STATE_HINTS;
 		Fade();
 	}
 
@@ -44,8 +45,9 @@ public class HintToggle: MonoBehaviour  {
 		foreach (GameObject objHint in objsHint) 
 		{
 			objHint.SetActive(false);
-		}
-	}
+		}	
+        GameManager.instance.state = GameManager.GAME_STATE.STATE_RETURN_TO_LAST;
+    }
 
 	protected virtual void Fade()
 	{
