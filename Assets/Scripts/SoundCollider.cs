@@ -19,13 +19,14 @@ public class SoundCollider : MonoBehaviour {
 		PlayClip(audioSrc, soundHit);
 	}
 
-	void OnTriggerEnter(Collider other) {
-		AudioSource audioSource = other.GetComponent<AudioSource>();
+	protected void OnCollisionEnter(Collision other)
+    {
+		AudioSource audioSource = other.gameObject.GetComponent<AudioSource>();
 		if (audioSource==null) {
 			return;
 		}
 	    if (soundHit != null) {
-            Debug.Log(string.Format("This object ({0}) is a collectable from other ({1})", gameObject.name, other.gameObject.name));
+            //Debug.Log(string.Format("This object ({0}) is a collectable from other ({1})", gameObject.name, other.gameObject.name));
             OnHit(audioSource, other.gameObject);
 		}
 	}

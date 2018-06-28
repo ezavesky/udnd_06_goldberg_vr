@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StarController : SoundCollider {
+public class StarCollider : SoundCollider {
     public float smooth = 75.0f;
 
 	// Use this for initialization

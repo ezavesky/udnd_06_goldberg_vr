@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54878126609593854}
   - component: {fileID: 114120358248594182}
   - component: {fileID: 114732077610950378}
+  - component: {fileID: 114284158026064610}
   m_Layer: 0
   m_Name: Tool_Metal_Plank_WE
   m_TagString: Collectable
@@ -147,6 +148,19 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114284158026064610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073303172717294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d4aa3c337f4e08955d3e8d419464d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundHit: {fileID: 8300000, guid: f8ab6e3782fe24499a6dabd714c89ab3, type: 3}
+  soundRub: {fileID: 0}
 --- !u!114 &114732077610950378
 MonoBehaviour:
   m_ObjectHideFlags: 1
