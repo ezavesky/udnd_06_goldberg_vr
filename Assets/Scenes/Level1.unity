@@ -470,7 +470,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4608215765680298, guid: 54138d8c478ab403db922dc264921750, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0.017
       objectReference: {fileID: 0}
     - target: {fileID: 4608215765680298, guid: 54138d8c478ab403db922dc264921750, type: 2}
       propertyPath: m_LocalPosition.z
@@ -496,20 +496,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 64462203873396634, guid: 54138d8c478ab403db922dc264921750,
+    - target: {fileID: 114435893306917688, guid: 54138d8c478ab403db922dc264921750,
         type: 2}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 64462203873396634, guid: 54138d8c478ab403db922dc264921750,
+      propertyPath: objParentCollectables
+      value: 
+      objectReference: {fileID: 630146862}
+    - target: {fileID: 114435893306917688, guid: 54138d8c478ab403db922dc264921750,
         type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1005129970109124, guid: 54138d8c478ab403db922dc264921750, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
+      propertyPath: objTeleportFinal
+      value: 
+      objectReference: {fileID: 526817120}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54138d8c478ab403db922dc264921750, type: 2}
   m_IsPrefabParent: 0
@@ -1693,6 +1689,12 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &526817120 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114302105706583444, guid: 8a9011ffb03094efc8ba8e695f5803a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 44550419}
+  m_Script: {fileID: 11500000, guid: f6512be739a547c4f8c3323a1bdb9708, type: 3}
 --- !u!1 &540610843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2163,7 @@ Prefab:
     - target: {fileID: 54223912724118654, guid: 31e3b600114d7457a80df36f8f32ea06,
         type: 2}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31e3b600114d7457a80df36f8f32ea06, type: 2}
@@ -3376,25 +3378,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1019990301}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1032110284 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1005129970109124, guid: 54138d8c478ab403db922dc264921750,
-    type: 2}
-  m_PrefabInternal: {fileID: 112708018}
---- !u!114 &1032110289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1032110284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0743741af60574baba5f713010ce884e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundHit: {fileID: 8300000, guid: 40af03d69aaf646cb9d0507a5f2767b0, type: 3}
-  soundRub: {fileID: 0}
-  BallSticks: 1
 --- !u!1 &1046919519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,6 +4693,10 @@ Prefab:
         type: 2}
       propertyPath: m_Convex
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073303172717294, guid: f208e6de4bc3e4aca9b402f1cf361787, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f208e6de4bc3e4aca9b402f1cf361787, type: 2}

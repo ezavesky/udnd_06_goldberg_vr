@@ -12,6 +12,7 @@ public class HintToggle: MonoBehaviour  {
 	void Start() 
 	{
 		RediscoverHints(true);
+        //GameManager.instance.state = GameManager.GAME_STATE.STATE_NORMAL;
 		headsetFade = GetComponent<VRTK_HeadsetFade>();
 	}
 

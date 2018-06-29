@@ -21,6 +21,11 @@ public class SoundCollider : MonoBehaviour {
 
 	protected void OnCollisionEnter(Collision other)
     {
+        OnTriggerEnter(other.collider);
+	}
+
+    protected void OnTriggerEnter(Collider other)
+    {
 		AudioSource audioSource = other.gameObject.GetComponent<AudioSource>();
 		if (audioSource==null) {
 			return;
