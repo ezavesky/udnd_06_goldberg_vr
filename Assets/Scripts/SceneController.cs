@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour {
     public string[] nameLevels = new string[0];
     public TeleportObjToggle teleporterController = null;
+    public HintToggle hintController = null;
 
 	// Use this for initialization
 	void Start () {
@@ -29,29 +30,35 @@ public class SceneController : MonoBehaviour {
         while (!asyncLoad.isDone)
         {
             yield return null;
-
-            // on complete, find all of the collectables under new scene
-            Scene sceneNew = SceneManager.GetSceneByName(strName); 
-            foreach (GameObject objRoot in sceneNew.GetRootGameObjects()) 
-            {
-                // start teleporter rediscover
-                if (teleporterController != null) 
-                {
-                    teleporterController.RediscoverTeleporters(objRoot);
-                }
-
-                GoalController sceneGoal = objRoot.GetComponent<GoalController>();
-                if (sceneGoal != null) 
-                {
-                    //reset game manager to find collectables
-                    sceneGoal.RediscoverCollectables();                    
-                    // teleport user to spawn within new scene
-                    sceneGoal.TeleportUser(true);
-                }
-                
-            }   //end search of goal
-
-
         }   //end wait for scene load
+
+        Scene sceneNew = SceneManager.GetSceneByName(strName); 
+
+        //rediscover hints in new scene
+        if (hintController != null) 
+        {
+            hintController.RediscoverHints(true, sceneNew);
+        }
+
+        // on complete, find all of the collectables under new scene
+        foreach (GameObject objRoot in sceneNew.GetRootGameObjects()) 
+        {
+            // start teleporter rediscover
+            if (teleporterController != null) 
+            {
+                teleporterController.RediscoverTeleporters(objRoot);
+            }
+
+            GoalController sceneGoal = objRoot.GetComponent<GoalController>();
+            if (sceneGoal != null) 
+            {
+                //reset game manager to find collectables
+                sceneGoal.RediscoverCollectables();                    
+                // teleport user to spawn within new scene
+                sceneGoal.TeleportUser(true);
+            }
+            
+        }   //end search of goal
+
     }   //end async scene load
 }
