@@ -1,31 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using VRTK;
 
 public class TeleportObjToggle : MonoBehaviour
 {
-    public GameObject[] objects = new GameObject[0];
-    public string[] retoggleTags = new string[0];
+    public List<VRTK_DestinationPoint> listTeleporters = new List<VRTK_DestinationPoint>();
     public AudioClip clipStart = null;
     public AudioClip clipHold = null;
 
-    void Start() 
+    public bool RediscoverTeleporters(GameObject objParent) 
     {
-        List<GameObject > listObjs = new List<GameObject>();
-        for (int i=0; i<retoggleTags.Length; i++) {
-            GameObject[] addObjs = GameObject.FindGameObjectsWithTag(retoggleTags[i]);
-            listObjs.AddRange(addObjs);
+        VRTK_DestinationPoint[] addObjs = objParent.GetComponentsInChildren<VRTK_DestinationPoint>();  //  .FindGameObjectsWithTag(retoggleTags[i]);
+        if ((addObjs == null) || (addObjs.Length == 0)) 
+        {
+            return false;
         }
-        objects = listObjs.ToArray();
+        listTeleporters.Clear();
+        listTeleporters.AddRange(addObjs);
         ToggleObjects(false);
+        return true;
     }
 
     public virtual void ToggleObjects(bool newState)
     {
-        for (int i = 0; i < objects.Length; i++)
+        foreach (VRTK_DestinationPoint objTeleport in listTeleporters)
         {
-            if (objects[i] != null)
+            if (objTeleport != null)
             {
-                objects[i].SetActive(newState);
+                objTeleport.gameObject.SetActive(newState);
             }
         }
         if (newState) {

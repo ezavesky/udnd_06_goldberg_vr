@@ -7,9 +7,10 @@ public class GoalController : SoundCollider {
     public bool BallSticks = true;
     public GameObject objParentCollectables = null;
     public VRTK_DestinationPoint objTeleportFinal = null;
+    public VRTK_DestinationPoint objTeleportInitial = null;
     public float delayTeleport = 2.0f;
 
-    void Start() {
+    public void RediscoverCollectables() {
         GameManager.instance.RediscoverCollectables(objParentCollectables);
     }
 
@@ -27,17 +28,25 @@ public class GoalController : SoundCollider {
 		}
 	}
 
-    protected void TeleportFinal() {
+    public void TeleportUser(bool bInitial) {
         //valid task, enable final teleport!
-        if (objTeleportFinal != null) {
-            // get destination point from editor/other - VRTK_DestinationPoint objTeleportFinal
-            VRTK_BasicTeleport teleportBasic = VRTK_ObjectCache.registeredTeleporters.Count > 0 ? VRTK_ObjectCache.registeredTeleporters[0] : null;
-            if (teleportBasic) {
-                //we will capture the orientation for position
-                //   for more complex snap operations (or none) check source - https://github.com/thestonefox/VRTK/blob/92ae954f9cdea93fb3687be8a3f9f23336f94784/Assets/VRTK/Prefabs/DestinationPoint/VRTK_DestinationPoint.cs#L448
-                Quaternion? destinationRotation = Quaternion.Euler(0f, objTeleportFinal.gameObject.transform.eulerAngles.y, 0f);
-                teleportBasic.Teleport(objTeleportFinal.gameObject.transform, objTeleportFinal.gameObject.transform.position, destinationRotation);
-            }
+        VRTK_DestinationPoint teleportDestination = bInitial ? objTeleportInitial : objTeleportFinal;
+        if (teleportDestination == null) {
+            Debug.LogWarning(string.Format("[GoalController]: Attmpted to teleport (initial: {0}), but no value set.", bInitial));
+            return;
+        }
+        DoTeleport(teleportDestination);
+    }
+
+    protected void DoTeleport(VRTK_DestinationPoint teleportDestination) {
+        // get destination point from editor/other - VRTK_DestinationPoint objTeleportFinal
+        VRTK_BasicTeleport teleportBasic = VRTK_ObjectCache.registeredTeleporters.Count > 0 ? VRTK_ObjectCache.registeredTeleporters[0] : null;
+        if (teleportBasic) {
+            //we will capture the orientation for position
+            //   for more complex snap operations (or none) check source - https://github.com/thestonefox/VRTK/blob/92ae954f9cdea93fb3687be8a3f9f23336f94784/Assets/VRTK/Prefabs/DestinationPoint/VRTK_DestinationPoint.cs#L448
+            Quaternion? destinationRotation = Quaternion.Euler(0f, teleportDestination.gameObject.transform.eulerAngles.y, 0f);
+            teleportBasic.Teleport(teleportDestination.gameObject.transform, 
+                                    teleportDestination.gameObject.transform.position, destinationRotation);
         }
     }
 

@@ -76,6 +76,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // methods to control single ball for final run or testing
+
     public void ValidateSingletonBall() {
         if (objUniqueBall != null) {
             Destroy(objUniqueBall);
@@ -87,6 +89,8 @@ public class GameManager : Singleton<GameManager>
         ValidateSingletonBall();
         objUniqueBall = objNew;
     }
+
+    /// methods for managing collectables in a level
 
     public void CaptureColletable(GameObject objNew) 
     {
@@ -134,9 +138,5 @@ public class GameManager : Singleton<GameManager>
         }
         Debug.Log(string.Format("[GameManager]: Reset {0} collectables.", collectableDict.Count));
     }
-
-    // turn on or off the next stage teleport when completed
-
-    
 
 }
