@@ -145,40 +145,4 @@ public class HandController : MonoBehaviour {
         }
 	}
 
-    /*
-    void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.CompareTag("Throwable") || col.gameObject.CompareTag("Collectable"))
-        {
-            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                ThrowObject(col);    
-            }
-            else if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
-            {
-                GrabObject(col);
-            }
-        }
-    }
-    
-    void GrabObject(Collider coli)
-    {
-        coli.transform.SetParent(gameObject.transform);
-        coli.GetComponent<Rigidbody>().isKinematic = true;
-        device.TriggerHapticPulse(2000);
-        Debug.Log("You are touching down the trigger on an object");
-    }
-
-    void ThrowObject(Collider coli)
-    {
-        coli.transform.SetParent(null);
-        Rigidbody rigidBody = coli.GetComponent<Rigidbody>();
-        bool isStatic = !coli.gameObject.CompareTag("Throwable");
-        rigidBody.isKinematic = isStatic;
-        rigidBody.useGravity = !isStatic;
-        rigidBody.velocity = device.velocity * throwForce;
-        rigidBody.angularVelocity = device.angularVelocity;
-        Debug.Log("You have released the trigger");
-    }
-    */
 }
