@@ -4,9 +4,9 @@ using VRTK;
 
 public class TeleportObjToggle : MonoBehaviour
 {
-    public List<VRTK_DestinationPoint> listTeleporters = new List<VRTK_DestinationPoint>();
+    protected List<VRTK_DestinationPoint> listTeleporters = new List<VRTK_DestinationPoint>();
     public AudioClip clipStart = null;
-    public AudioClip clipHold = null;
+    public AudioClip clipStop = null;
 
     public bool RediscoverTeleporters(GameObject objParent) 
     {
@@ -31,13 +31,18 @@ public class TeleportObjToggle : MonoBehaviour
             }
         }
         if (newState) {
-            if (clipStart) 
+            if (clipStart) //play the start sound
             {
-                //start playing back a 'pending' loop
-
+                AudioSource.PlayClipAtPoint(clipStart, Camera.main.transform.position);
+            }
+            //TODO: ? start playing back a 'pending' loop
+        }
+        else {
+            if (clipStop) //play the stop sound
+            {
+                AudioSource.PlayClipAtPoint(clipStop, Camera.main.transform.position);
             }
         }
-
     }
 
     

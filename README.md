@@ -36,12 +36,12 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * Collectable
 * **Goal** - Each level contains a goal object, often at the lowest point in the level.  
    * When the ball touches the goal (through correct gameplay), fanfare is played and the player can transport to the exit teleport.
-* **Scene Loading** - 
+* **Scene Loading** - Between levels (scenes), the camera will fade to black.  Upon complete level load, the user will teleport to the next starting position and fade out of black.
 * **Cheat Detection** - For testing of interaction placement, players can clone balls and let them roll from arbitary locations.  
     * Collectibles reset at each ball release and the only way to complete a level is gather all collectibles.  Therefore, balls released from non-start positions will not gather all collctibles. 
     * Further, the only valid start position is demarked with a different color teleport zone (*green*) compared to the normal teleporter color (*blue*).  The final teleport zone (*white*) will only transport the user once all collectibles are gone.
 * **Levels** - Each level will vertically stack on other levels after completion.
-    * To assist users in each level, they can activate a *hint mode* with the left grip.  Collectables are deactivated while in hint mode.
+    * **Hints** - To assist users in each level, they can activate a *hint mode* with the left grip.  Collectables are deactivated while in hint mode.
 
 ## Data Sources
 * [winter hill 360 pano (skybox)](https://flic.kr/p/dU4VgM)

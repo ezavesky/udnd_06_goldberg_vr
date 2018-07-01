@@ -16,6 +16,10 @@ public class HintToggle: MonoBehaviour  {
 	void Start() 
 	{
 		headsetFade = GetComponent<VRTK_HeadsetFade>();
+        if (headsetFade) 
+        {
+    		headsetFade.HeadsetFadeComplete += new HeadsetFadeEventHandler(ActivateHints);
+        }
 	}
 
 	public void RediscoverHints(bool bForgetPrior=true, object sceneFilter=null)
@@ -86,7 +90,6 @@ public class HintToggle: MonoBehaviour  {
 	{
 		if (!headsetFade)
 			return;		
-		headsetFade.HeadsetFadeComplete += new HeadsetFadeEventHandler(ActivateHints);
 		headsetFade.Fade(new Color(1.0f, 1.0f, 1.0f, 0.1f), blinkTransitionSpeed);
 	}
 
@@ -96,7 +99,6 @@ public class HintToggle: MonoBehaviour  {
 		{
 			objHint.SetActive(true);
 		}
-		headsetFade.HeadsetFadeComplete -= new HeadsetFadeEventHandler(ActivateHints);
 	}
 
 

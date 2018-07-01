@@ -6,7 +6,6 @@ using VRTK;
 
 public class SceneController : MonoBehaviour {
     //public string[] nameLevels = new string[0];
-    public List<string> listLevelNames = new List<string>();
     public TeleportObjToggle teleporterController = null;
     public HintToggle hintController = null;
 	
@@ -26,22 +25,17 @@ public class SceneController : MonoBehaviour {
         	headsetFade.HeadsetFadeComplete += new HeadsetFadeEventHandler(HeadsetFadeComplete);
         }
 	
-        //FinishSceneInit(SceneManager.GetActiveScene()); 
-
-        // load scene / operation
-        if (listLevelNames.Count > 0) {
-            // alternate is fade in to new temporary stage
-            SceneLoad(listLevelNames[0]);
-        }
+        // finish scene with our current scene
+        SceneLoad();
 	}
 	
     // called by a goal or game manager
-    public void SceneLoad(string strName) 
+    public void SceneLoad(string strName = null) 
     {
         nameSceneNext = strName;
         if (headsetFade)        // if we have a valid fade, attempt to do that first
         {
-            Invoke("HeadsetFadeBeforeLevel", 0.5f);     //for delay for correct op
+            Invoke("HeadsetFadeBeforeLevel", 0.001f);     //for delay for correct op
         }
         else                    // if we do not, just jump right to scene transition
         {
@@ -51,7 +45,7 @@ public class SceneController : MonoBehaviour {
 
     protected void HeadsetFadeBeforeLevel() 
     {
-        headsetFade.Fade(new Color(0f, 0f, 0f, 1f), timeSceneLoadFade);
+        headsetFade.Fade(new Color(0f, 0f, 0f, 1f), string.IsNullOrEmpty(nameSceneNext) ? 0f : timeSceneLoadFade);
     }
 
     // event complete for end of fade, proceed to scene load
@@ -64,35 +58,27 @@ public class SceneController : MonoBehaviour {
     // enumeror for scene load completion
     protected IEnumerator LoadAsyncScene(string strName)
     {
-        // load the scene
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);
-
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
+        Scene sceneNew = SceneManager.GetActiveScene();
+        if (!string.IsNullOrEmpty(strName))
         {
-            yield return null;
-        }   //end wait for scene load
+            // load the scene
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);
 
-        Scene sceneNew = SceneManager.GetSceneByName(strName); 
+            // Wait until the asynchronous scene fully loads
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }   //end wait for scene load
+            sceneNew = SceneManager.GetSceneByName(strName); 
+        }
         if (!sceneNew.IsValid())
         {
             Debug.LogError(string.Format("[SceneController]: Attempted to load scene '{0}', but returned invalid!", strName));
             yield break;            
         }
-        FinishSceneInit(sceneNew);
-    }
-
-    //finish loading a scene
-    protected void FinishSceneInit(Scene sceneNew) 
-    {
+      
         // finally change the state back to initial
         GameManager.instance.state = GameManager.GAME_STATE.STATE_INITIAL;
-
-        //rediscover hints in new scene
-        if (hintController != null) 
-        {
-            hintController.RediscoverHints(true, sceneNew);
-        }
 
         // on complete, find all of the collectables under new scene
         foreach (GameObject objRoot in sceneNew.GetRootGameObjects()) 
@@ -112,6 +98,12 @@ public class SceneController : MonoBehaviour {
                 sceneGoal.TeleportUser(true);
             }
         }   //end search of goal
+
+        //rediscover hints in new scene
+        if (hintController != null) 
+        {
+            hintController.RediscoverHints(true, sceneNew);
+        }
 
         // unfade the screen
         headsetFade.Unfade(timeSceneLoadFade*2);

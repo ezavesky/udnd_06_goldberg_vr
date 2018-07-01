@@ -51,7 +51,13 @@ public class GameManager : Singleton<GameManager>
     public bool finishedLevel { 
         get 
         { 
-            return _state == GAME_STATE.STATE_FINISHED; 
+            // state jump if we're in normal but no collectables (like in training level)
+            if ((_state == GAME_STATE.STATE_FINISHED) || (_state == GAME_STATE.STATE_NORMAL && collectableDict.Count==0)) 
+            {
+                state = GAME_STATE.STATE_FINISHED;
+                return true;
+            }
+            return false;
         } 
         private set {} 
     }
