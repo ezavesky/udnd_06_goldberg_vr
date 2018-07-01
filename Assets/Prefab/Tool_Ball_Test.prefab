@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114499993167129462}
   m_Layer: 0
   m_Name: Tool_Ball_Test
-  m_TagString: Throwable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

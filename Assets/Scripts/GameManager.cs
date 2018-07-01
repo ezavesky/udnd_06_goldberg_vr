@@ -149,22 +149,31 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void RediscoverCollectables(GameObject objLevelParent) 
+    public bool RediscoverCollectables(GameObject objLevelParent) 
     {
-        //walk through all children in a parent level to discover the collectables
+        StarCollider[] addObjs = objLevelParent.GetComponentsInChildren<StarCollider>();  //  .FindGameObjectsWithTag(retoggleTags[i]);
+        if ((addObjs == null) || (addObjs.Length == 0)) 
+        {
+            return false;
+        }
+        //walk through all examples to discover the collectable objects
         collectableDict.Clear();
-        for (int c=0; c< objLevelParent.transform.childCount; c++) {
-            GameObject objChild = objLevelParent.transform.GetChild(c).gameObject;
+        foreach (StarCollider objCollectable in addObjs) 
+        {
+            GameObject objChild = objCollectable.gameObject;
             collectableDict.Add(objChild.GetInstanceID(), objChild);
         }
         Debug.Log(string.Format("[GameManager]: Discovered {0} collectables.", collectableDict.Count));
+        return true;
     }
 
     public void ResetCollectables() 
     {
         //reset collectables for a level because the ball fell
-        if (collectableDict.Count == 0)
+        if (collectableDict.Count == 0) 
+        {
             return;
+        }
         foreach (KeyValuePair<int, GameObject> pairC in collectableDict) 
         {
             pairC.Value.SetActive(true);

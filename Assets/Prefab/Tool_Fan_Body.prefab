@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114002905750934812}
   m_Layer: 0
   m_Name: Tool_Fan_Body
-  m_TagString: Collectable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236028694116224}
   m_LocalRotation: {x: -0.016692389, y: -0.9230002, z: -0.38231918, w: 0.04029899}
-  m_LocalPosition: {x: 0.0000019073486, y: 0.6000199, z: 0.99899}
-  m_LocalScale: {x: 80, y: 80, z: 80}
+  m_LocalPosition: {x: -2.09, y: 3.84, z: 1.03}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 4247045267203342}
   m_Father: {fileID: 0}

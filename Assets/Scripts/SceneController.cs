@@ -12,9 +12,8 @@ public class SceneController : MonoBehaviour {
     // [Header("Body Collision Settings")]
     //[Tooltip("If checked then the body collider and rigidbody will be used to check for rigidbody collisions.")]
     protected VRTK_HeadsetFade headsetFade = null;
-    protected string nameSceneNext = null;
+    public string nameSceneNext = null;
     protected float timeSceneLoadFade = 1.0f;
-    public AudioClip clipOn = null;
 
 	// Use this for initialization
 	void Start () {
@@ -32,14 +31,17 @@ public class SceneController : MonoBehaviour {
     // called by a goal or game manager
     public void SceneLoad(string strName = null) 
     {
-        nameSceneNext = strName;
+        if (!string.IsNullOrEmpty(strName)) 
+        {
+            nameSceneNext = strName;
+        }
         if (headsetFade)        // if we have a valid fade, attempt to do that first
         {
             Invoke("HeadsetFadeBeforeLevel", 0.001f);     //for delay for correct op
         }
         else                    // if we do not, just jump right to scene transition
         {
-            StartCoroutine(LoadAsyncScene(strName));
+            StartCoroutine(LoadAsyncScene(nameSceneNext));
         }
     }
 
@@ -79,6 +81,7 @@ public class SceneController : MonoBehaviour {
       
         // finally change the state back to initial
         GameManager.instance.state = GameManager.GAME_STATE.STATE_INITIAL;
+        GoalController sceneGoal = null;
 
         // on complete, find all of the collectables under new scene
         foreach (GameObject objRoot in sceneNew.GetRootGameObjects()) 
@@ -89,20 +92,26 @@ public class SceneController : MonoBehaviour {
                 teleporterController.RediscoverTeleporters(objRoot);
             }
 
-            GoalController sceneGoal = objRoot.GetComponent<GoalController>();
-            if (sceneGoal != null) 
+            GoalController localSceneGoal = objRoot.GetComponent<GoalController>();
+            if (localSceneGoal != null) 
             {
-                //reset game manager to find collectables
-                sceneGoal.RediscoverCollectables();                    
-                // teleport user to spawn within new scene
-                sceneGoal.TeleportUser(true);
+                sceneGoal = localSceneGoal;
             }
+
+            //start collectable rediscover
+            GameManager.instance.RediscoverCollectables(objRoot);
+
         }   //end search of goal
 
         //rediscover hints in new scene
         if (hintController != null) 
         {
             hintController.RediscoverHints(true, sceneNew);
+        }
+        // teleport user to spawn within new scene
+        if (sceneGoal) 
+        {
+            sceneGoal.TeleportUser(true);
         }
 
         // unfade the screen

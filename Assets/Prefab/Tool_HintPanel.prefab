@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 23045964763076974}
   m_Layer: 0
   m_Name: Tool_HintPanel
-  m_TagString: Hints
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

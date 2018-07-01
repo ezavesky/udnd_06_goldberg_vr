@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114657497610099296}
   m_Layer: 0
   m_Name: Tool_Trampoline
-  m_TagString: Bounce
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -17,7 +17,7 @@ public class TeleportObjToggle : MonoBehaviour
         }
         listTeleporters.Clear();
         listTeleporters.AddRange(addObjs);
-        ToggleObjects(false);
+        //ToggleObjects(false);
         return true;
     }
 

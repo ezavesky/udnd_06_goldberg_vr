@@ -4,16 +4,11 @@ using UnityEngine;
 using VRTK;
 
 public class GoalController : SoundCollider {
-    public bool BallSticks = true;
-    public GameObject objParentCollectables = null;
-    public VRTK_DestinationPoint objTeleportFinal = null;
-    public VRTK_DestinationPoint objTeleportInitial = null;
+    protected bool BallSticks = true;  // for now always stop ball (to avoid falling to ground)
+    public VRTK_DestinationPoint objTeleportFinal;
+    public VRTK_DestinationPoint objTeleportInitial;
     public string nameSceneNext = "";
     protected float delayTeleport = 5.0f;
-
-    public void RediscoverCollectables() {
-        GameManager.instance.RediscoverCollectables(objParentCollectables);
-    }
 
 	protected override void OnHit(AudioSource audioSrc, GameObject objOther) {
         if (!GameManager.instance.finishedLevel) 
@@ -32,11 +27,12 @@ public class GoalController : SoundCollider {
     public void TeleportUser(bool bInitial) {
         //valid task, enable final teleport!
         VRTK_DestinationPoint teleportDestination = bInitial ? objTeleportInitial : objTeleportFinal;
-        if (teleportDestination == null) {
-            Debug.LogWarning(string.Format("[GoalController]: Attmpted to teleport (initial: {0}), but no value set.", bInitial));
-            return;
+        if (teleportDestination != null) {
+            DoTeleport(teleportDestination);
         }
-        DoTeleport(teleportDestination);
+        else {
+            Debug.LogWarning(string.Format("[GoalController]: Attempting to teleport {0}, but destination not set.", bInitial));
+        }
     }
 
     protected void TeleportFinal() 
