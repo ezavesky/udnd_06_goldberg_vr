@@ -8,6 +8,7 @@ public class GoalController : SoundCollider {
     public GameObject objParentCollectables = null;
     public VRTK_DestinationPoint objTeleportFinal = null;
     public VRTK_DestinationPoint objTeleportInitial = null;
+    public string nameSceneNext = "";
     public float delayTeleport = 2.0f;
 
     public void RediscoverCollectables() {
@@ -32,10 +33,16 @@ public class GoalController : SoundCollider {
         //valid task, enable final teleport!
         VRTK_DestinationPoint teleportDestination = bInitial ? objTeleportInitial : objTeleportFinal;
         if (teleportDestination == null) {
-            Debug.LogWarning(string.Format("[GoalController]: Attmpted to teleport (initial: {0}), but no value set.", bInitial));
+            Debug.LogError(string.Format("[GoalController]: Attmpted to teleport (initial: {0}), but no value set.", bInitial));
             return;
         }
         DoTeleport(teleportDestination);
+    }
+
+    protected void TeleportFinal() 
+    {
+        TeleportUser(false);        // teleport directly
+        GameManager.instance.LoadNewScene(nameSceneNext);       //load next scene
     }
 
     protected void DoTeleport(VRTK_DestinationPoint teleportDestination) {

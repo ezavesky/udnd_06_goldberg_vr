@@ -11,7 +11,7 @@ public class HintToggle: MonoBehaviour  {
 	protected VRTK_HeadsetFade headsetFade = null;
     public AudioClip clipOn = null;
     public AudioClip clipOff = null;
-    
+    public bool enableHintTesting = false;
 
 	void Start() 
 	{
@@ -35,7 +35,24 @@ public class HintToggle: MonoBehaviour  {
 			}
 		}
 		Debug.Log(string.Format("[HintToggle]: Found a total of {0} hint objects", listHints.Count));
-		DisableHints(false);
+		if (enableHintTesting) 
+        {
+            //test mode places you into normal state and makes first object in hint list (e.g. the ball) non-kinematic
+            GameManager.instance.state = GameManager.GAME_STATE.STATE_NORMAL;
+            if (listHints.Count > 0 && listHints[0].transform.childCount > 0) 
+            {
+                GameObject objStartBall = listHints[0].transform.GetChild(0).gameObject;
+                Rigidbody rb = objStartBall.GetComponent<Rigidbody>();
+                if (rb != null) 
+                {
+                    rb.isKinematic = false;
+                }
+            } 
+        }
+        else 
+        {
+            DisableHints(false);
+        }
 	}
 
 	public void EnableHints() 
@@ -57,12 +74,12 @@ public class HintToggle: MonoBehaviour  {
             {
                 AudioSource.PlayClipAtPoint(clipOff, Camera.main.transform.position);
             }
+            GameManager.instance.state = GameManager.GAME_STATE.STATE_RETURN_TO_LAST;
 		}
 		foreach (GameObject objHint in listHints) 
 		{
 			objHint.SetActive(false);
 		}	
-        GameManager.instance.state = GameManager.GAME_STATE.STATE_RETURN_TO_LAST;
     }
 
 	protected virtual void Fade()

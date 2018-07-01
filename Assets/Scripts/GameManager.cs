@@ -32,10 +32,11 @@ public class Singleton<T> : MonoBehaviour where T:Singleton<T>
 
 public class GameManager : Singleton<GameManager> 
 {
-    public enum GAME_STATE { STATE_INITIAL, STATE_NORMAL, STATE_TESTING, STATE_HINTS, STATE_FINISHED, STATE_RETURN_TO_LAST=1000 };
+    public enum GAME_STATE { STATE_INITIAL, STATE_NORMAL, STATE_TESTING, STATE_HINTS, STATE_FINISHED, STATE_NEXT_LEVEL, STATE_RETURN_TO_LAST=1000 };
     protected GAME_STATE _state = GAME_STATE.STATE_INITIAL;
     protected GAME_STATE _stateLast = GAME_STATE.STATE_INITIAL;
     protected GameObject objUniqueBall = null;  //created instance of unique object
+    protected SceneController sceneController = null;  //allow manipulation of the scene
 
     protected Dictionary<int, GameObject> collectableDict = new Dictionary<int, GameObject>();
 
@@ -63,6 +64,11 @@ public class GameManager : Singleton<GameManager>
                 GAME_STATE stateTemp = _state;
                 _state = _stateLast;    
             }
+            else if (value == GAME_STATE.STATE_NEXT_LEVEL) {
+                Debug.Log(string.Format("[GameManager] Switching to next scene with scene manager {0}", sceneController));
+                _stateLast = _state;
+                _state = GAME_STATE.STATE_INITIAL;
+            }
             else {
                 // guarantee that we have only one unique object (e.g. a ball)
                 Debug.Log(string.Format("[GameManager]: New state {0}, previous state {1}", value, _state));
@@ -74,6 +80,27 @@ public class GameManager : Singleton<GameManager>
         {
             return _state;
         }
+    }
+
+    // helper methods for scene/level controll
+
+    public void RegisterSceneController(SceneController sceneControllerNew) 
+    {
+         sceneController = sceneControllerNew;
+    }
+
+    public bool LoadNewScene(string nameSceneNext) 
+    {
+        if (state != GAME_STATE.STATE_FINISHED)
+        {
+            Debug.LogWarning(string.Format("[GameManager] Attempting to load new scene '{0}' but not in finished state", nameSceneNext));
+            return false;
+        }
+        state = GAME_STATE.STATE_NEXT_LEVEL;
+        if (sceneController != null) {
+            sceneController.SceneLoad(nameSceneNext);
+        }
+        return true;
     }
 
     // methods to control single ball for final run or testing
