@@ -151,14 +151,14 @@ public class GameManager : Singleton<GameManager>
 
     public bool RediscoverCollectables(GameObject objLevelParent) 
     {
-        StarCollider[] addObjs = objLevelParent.GetComponentsInChildren<StarCollider>();  //  .FindGameObjectsWithTag(retoggleTags[i]);
+        StarController[] addObjs = objLevelParent.GetComponentsInChildren<StarController>();  //  .FindGameObjectsWithTag(retoggleTags[i]);
         if ((addObjs == null) || (addObjs.Length == 0)) 
         {
             return false;
         }
         //walk through all examples to discover the collectable objects
         collectableDict.Clear();
-        foreach (StarCollider objCollectable in addObjs) 
+        foreach (StarController objCollectable in addObjs) 
         {
             GameObject objChild = objCollectable.gameObject;
             collectableDict.Add(objChild.GetInstanceID(), objChild);
