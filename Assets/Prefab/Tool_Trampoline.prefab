@@ -22,16 +22,17 @@ GameObject:
   - component: {fileID: 33992590496276738}
   - component: {fileID: 23395339676799250}
   - component: {fileID: 54635478716176500}
-  - component: {fileID: 64626338449629070}
+  - component: {fileID: 65598908120046294}
   - component: {fileID: 114067542941063784}
   - component: {fileID: 114657497610099296}
   - component: {fileID: 114630967198846058}
+  - component: {fileID: 114666483330743488}
   m_Layer: 0
   m_Name: Tool_Trampoline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4583460405206672
 Transform:
@@ -39,13 +40,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609848652762152}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 3.9995227, y: 0, z: -2.9999993}
-  m_LocalScale: {x: 80, y: 80, z: 80}
+  m_LocalRotation: {x: -0.39044833, y: 0.34682897, z: 0.161729, w: 0.8373192}
+  m_LocalPosition: {x: -2.88, y: -0.432, z: 0.235}
+  m_LocalScale: {x: 80, y: 79.99997, z: 79.99997}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -50.000004, y: 45, z: 0}
 --- !u!23 &23395339676799250
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -102,20 +103,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64626338449629070
-MeshCollider:
+--- !u!65 &65598908120046294
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609848652762152}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bebf5725360f74317866db399450e61d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300150, guid: 118b350461f06ae4d831b8b9935c8502, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.015, y: 0.015, z: 0.002}
+  m_Center: {x: 0, y: 0, z: 0.0032}
 --- !u!114 &114067542941063784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,3 +198,17 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
+--- !u!114 &114666483330743488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609848652762152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67eb75759640b47afa24dc2ef0fa4a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundHit: {fileID: 8300000, guid: 2d95a4be1661c45a188228aa7fd168b3, type: 3}
+  soundRub: {fileID: 0}
+  forceMultiplier: 80

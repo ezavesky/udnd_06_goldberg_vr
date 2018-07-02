@@ -53,3 +53,4 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * [hint power-up sound](https://freesound.org/people/Timbre/sounds/171595/)
 * [grabbing sound](https://freesound.org/people/ihitokage/sounds/395332/)
 * [boxfan sound](https://freesound.org/people/n_audioman/sounds/294460/)
+* [trampoline sound](https://freesound.org/people/duckduckpony/sounds/130510/)
