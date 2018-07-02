@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4162361563569840}
+  - component: {fileID: 54602628728543018}
   - component: {fileID: 114417802184972504}
   - component: {fileID: 114886792032535324}
   - component: {fileID: 114795955819499088}
@@ -77,7 +78,6 @@ GameObject:
   - component: {fileID: 4818105318041680}
   - component: {fileID: 33065138670042636}
   - component: {fileID: 23959239768995872}
-  - component: {fileID: 54604373824877842}
   - component: {fileID: 64695431347748652}
   m_Layer: 0
   m_Name: Tool_Fan_Body (1)
@@ -264,12 +264,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1782569840646258}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54604373824877842
+--- !u!54 &54602628728543018
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1961765775543364}
+  m_GameObject: {fileID: 1779082912519380}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   colliderWind: {fileID: 64044991645845884}
   objBody: {fileID: 1961765775543364}
   smooth: 300
-  fanMultiplier: 80
+  forceMultiplier: 80
 --- !u!198 &198892002685040604
 ParticleSystem:
   m_ObjectHideFlags: 1
