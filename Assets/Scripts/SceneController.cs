@@ -63,16 +63,20 @@ public class SceneController : MonoBehaviour {
         Scene sceneNew = SceneManager.GetActiveScene();
         if (!string.IsNullOrEmpty(strName))
         {
-            // load the scene
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);
-
-            // Wait until the asynchronous scene fully loads
-            while (!asyncLoad.isDone)
+            sceneNew = SceneManager.GetSceneByName(strName);
+            if (!sceneNew.isLoaded)     //avoid loading if already there
             {
-                yield return null;
-            }   //end wait for scene load
-            sceneNew = SceneManager.GetSceneByName(strName); 
-        }
+                // load the scene
+                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);
+
+                // Wait until the asynchronous scene fully loads
+                while (!asyncLoad.isDone)
+                {
+                    yield return null;
+                }   //end wait for scene load
+                sceneNew = SceneManager.GetSceneByName(strName); 
+            }
+       }
         if (!sceneNew.IsValid())
         {
             Debug.LogError(string.Format("[SceneController]: Attempted to load scene '{0}', but returned invalid!", strName));

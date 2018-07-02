@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundCollider : MonoBehaviour {
 	public AudioClip soundHit = null;
 	public AudioClip soundRub = null;
-
+    protected bool triggerStay = false;
 
 	protected void PlayClip(AudioSource audioSrc, AudioClip audioClip) {
 		if (audioClip==null || audioSrc==null) {
@@ -22,6 +22,14 @@ public class SoundCollider : MonoBehaviour {
 	protected void OnCollisionEnter(Collision other)
     {
         OnTriggerEnter(other.collider);
+	}
+
+	protected void OnTriggerStay(Collider other)
+    {
+        if (triggerStay) 
+        {
+            OnTriggerEnter(other);
+        }
 	}
 
     protected void OnTriggerEnter(Collider other)

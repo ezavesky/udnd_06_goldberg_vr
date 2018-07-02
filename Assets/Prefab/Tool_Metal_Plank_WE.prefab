@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 54878126609593854}
   - component: {fileID: 114120358248594182}
   - component: {fileID: 114732077610950378}
+  - component: {fileID: 114366287419409670}
   - component: {fileID: 114284158026064610}
   m_Layer: 0
   m_Name: Tool_Metal_Plank_WE
@@ -161,6 +162,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundHit: {fileID: 8300000, guid: f8ab6e3782fe24499a6dabd714c89ab3, type: 3}
   soundRub: {fileID: 0}
+--- !u!114 &114366287419409670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073303172717294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 8300000, guid: f9d138ae423ec41658039957211f6405, type: 3}
+  strengthOnGrab: 0.5
+  durationOnGrab: 1
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
 --- !u!114 &114732077610950378
 MonoBehaviour:
   m_ObjectHideFlags: 1
