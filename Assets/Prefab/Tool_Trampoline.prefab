@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114067542941063784}
   - component: {fileID: 114657497610099296}
   - component: {fileID: 114630967198846058}
-  - component: {fileID: 114666483330743488}
   m_Layer: 0
   m_Name: Tool_Trampoline
   m_TagString: Untagged
@@ -198,17 +197,3 @@ MonoBehaviour:
   onGrabCollisionDelay: 0
   destroyImmediatelyOnThrow: 1
   breakForce: 1500
---- !u!114 &114666483330743488
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1609848652762152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67eb75759640b47afa24dc2ef0fa4a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundHit: {fileID: 8300000, guid: 2d95a4be1661c45a188228aa7fd168b3, type: 3}
-  soundRub: {fileID: 0}
-  forceMultiplier: 80
