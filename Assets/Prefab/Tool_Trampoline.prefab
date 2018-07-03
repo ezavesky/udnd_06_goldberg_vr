@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114067542941063784}
   - component: {fileID: 114657497610099296}
   - component: {fileID: 114630967198846058}
+  - component: {fileID: 114530842344707712}
   m_Layer: 0
   m_Name: Tool_Trampoline
   m_TagString: Untagged
@@ -146,6 +147,19 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &114530842344707712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609848652762152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d4aa3c337f4e08955d3e8d419464d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundHit: {fileID: 8300000, guid: 2d95a4be1661c45a188228aa7fd168b3, type: 3}
+  soundRub: {fileID: 0}
 --- !u!114 &114630967198846058
 MonoBehaviour:
   m_ObjectHideFlags: 1
