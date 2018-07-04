@@ -1,4 +1,4 @@
-# Rube Goldberg Starter Project
+# Rube Goldberg Project
 
 This project is part of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [VR Developer Nanodegree](https://www.udacity.com/course/vr-developer-nanodegree--nd017).
 
@@ -54,3 +54,9 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * [grabbing sound](https://freesound.org/people/ihitokage/sounds/395332/)
 * [boxfan sound](https://freesound.org/people/n_audioman/sounds/294460/)
 * [trampoline sound](https://freesound.org/people/duckduckpony/sounds/130510/)
+
+## Walkthrough
+Want to see all of the levels in action? You can enable hint 
+testing to watch everything play through.  Just navigate in the editor to the location below, enable testing, and play the
+game. 
+![Hint Replay Tool](docs/hint_player_shortcut.jpg)
