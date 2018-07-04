@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectMenuManager : MonoBehaviour {
+    public GameObject objectParent;  // desination for created objects
     public List<GameObject> objectPrefabList; //set manually in inspector 
     public GameObject objectPrefabUnique;  //confirms that there is only ONE instance of this prefab type
     protected int currentObject = 0;
-    protected List<GameObject> objectList; //handled automatically at start
+    protected List<GameObject> objectList = new List<GameObject>(); //handled automatically at start
 
 	// Use this for initialization
 	void Start () {
-        objectList = new List<GameObject>();
+        if (objectParent == null) 
+        {
+            objectParent = gameObject.transform.parent.gameObject;
+        }
 
         foreach (GameObject obj in objectPrefabList)
         {
@@ -96,7 +100,8 @@ public class ObjectMenuManager : MonoBehaviour {
         GameManager.instance.state = GameManager.GAME_STATE.STATE_TESTING;       // pulled the object we care about, normal state!
         GameObject objNew = Instantiate(objectPrefabList[currentObject], 
             objectList[currentObject].transform.position, 
-            objectList[currentObject].transform.rotation);
+            objectList[currentObject].transform.rotation, 
+            objectParent.transform);
         if (objectPrefabList[currentObject] == objectPrefabUnique) {
             GameManager.instance.RegisterSingletonBall(objNew);
         }

@@ -255,7 +255,7 @@ MonoBehaviour:
   durationOnTouch: 0
   intervalOnTouch: 0.05
   cancelOnUntouch: 1
-  clipOnGrab: {fileID: 8300000, guid: f9d138ae423ec41658039957211f6405, type: 3}
+  clipOnGrab: {fileID: 0}
   strengthOnGrab: 0.5
   durationOnGrab: 1
   intervalOnGrab: 0.05
