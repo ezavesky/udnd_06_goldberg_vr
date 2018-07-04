@@ -8,6 +8,8 @@ public class SceneController : MonoBehaviour {
     //public string[] nameLevels = new string[0];
     public TeleportObjToggle teleporterController = null;
     public HintToggle hintController = null;
+    protected string nameSceneMain = null;
+    protected GameObject objToolParent = null;
 	
     // [Header("Body Collision Settings")]
     //[Tooltip("If checked then the body collider and rigidbody will be used to check for rigidbody collisions.")]
@@ -19,10 +21,16 @@ public class SceneController : MonoBehaviour {
 	void Start () {
         GameManager.instance.RegisterSceneController(this);
 		headsetFade = GetComponent<VRTK_HeadsetFade>();
+        nameSceneMain = gameObject.scene.name;
         if (headsetFade) 
         {
         	headsetFade.HeadsetFadeComplete += new HeadsetFadeEventHandler(HeadsetFadeComplete);
         }
+
+        // create holder object for tools 
+        objToolParent = new GameObject("Runtime GameTools"); 
+        objToolParent.transform.parent = gameObject.transform;
+        GameManager.instance.toolParentTransform = objToolParent.transform;
 	
         // finish scene with our current scene
         SceneLoad();
@@ -35,6 +43,11 @@ public class SceneController : MonoBehaviour {
         {
             nameSceneNext = strName;
         }
+        if (string.IsNullOrEmpty(nameSceneNext) && !string.IsNullOrEmpty(nameSceneMain)) 
+        {
+            nameSceneNext = nameSceneMain;
+        }
+
         if (headsetFade)        // if we have a valid fade, attempt to do that first
         {
             Invoke("HeadsetFadeBeforeLevel", 0.001f);     //for delay for correct op
@@ -83,6 +96,14 @@ public class SceneController : MonoBehaviour {
             yield break;            
         }
       
+        // if we loaded the same scene as the initial scene, clear all play objects
+        if (string.Equals(sceneNew.name, nameSceneMain) && objToolParent!=null) 
+        {
+            foreach (Transform child in objToolParent.transform) {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+
         // finally change the state back to initial
         GameManager.instance.state = GameManager.GAME_STATE.STATE_INITIAL;
         GoalController sceneGoal = null;
@@ -96,7 +117,7 @@ public class SceneController : MonoBehaviour {
                 teleporterController.RediscoverTeleporters(objRoot);
             }
 
-            GoalController localSceneGoal = objRoot.GetComponent<GoalController>();
+            GoalController localSceneGoal = objRoot.GetComponentInChildren<GoalController>();
             if (localSceneGoal != null) 
             {
                 sceneGoal = localSceneGoal;

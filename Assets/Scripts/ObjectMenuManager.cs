@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectMenuManager : MonoBehaviour {
-    public GameObject objectParent;  // desination for created objects
     public List<GameObject> objectPrefabList; //set manually in inspector 
     public GameObject objectPrefabUnique;  //confirms that there is only ONE instance of this prefab type
     protected int currentObject = 0;
@@ -11,11 +10,6 @@ public class ObjectMenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (objectParent == null) 
-        {
-            objectParent = gameObject.transform.parent.gameObject;
-        }
-
         foreach (GameObject obj in objectPrefabList)
         {
             AddMenuPrefab(obj);
@@ -101,7 +95,7 @@ public class ObjectMenuManager : MonoBehaviour {
         GameObject objNew = Instantiate(objectPrefabList[currentObject], 
             objectList[currentObject].transform.position, 
             objectList[currentObject].transform.rotation, 
-            objectParent.transform);
+            GameManager.instance.toolParentTransform);
         if (objectPrefabList[currentObject] == objectPrefabUnique) {
             GameManager.instance.RegisterSingletonBall(objNew);
         }

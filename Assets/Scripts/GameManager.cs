@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     protected GAME_STATE _stateLast = GAME_STATE.STATE_INITIAL;
     protected GameObject objUniqueBall = null;  //created instance of unique object
     protected SceneController sceneController = null;  //allow manipulation of the scene
+    public Transform toolParentTransform = null;  // transform to use for created tools
 
     protected Dictionary<int, GameObject> collectableDict = new Dictionary<int, GameObject>();
 
