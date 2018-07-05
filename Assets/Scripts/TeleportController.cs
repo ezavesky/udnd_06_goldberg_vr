@@ -29,7 +29,6 @@ public class TeleportController : SoundCollider {
             interactObj.InteractableObjectGrabbed += new InteractableObjectEventHandler(OnInteractableObjectGrabbed);
             interactObj.InteractableObjectUngrabbed += new InteractableObjectEventHandler(OnInteractableObjectUngrabbed);
         }
-        FindClosestTeleport();
 	}
 	
 	// turn on or off the echo
@@ -59,7 +58,7 @@ public class TeleportController : SoundCollider {
         teleportClosest = null;
         float fDistMin = 0f;
         float fDistLocal = 0f;
-        foreach (TeleportController teleportCompare in interactObj.transform.parent.GetComponentsInChildren<TeleportController>()) 
+        foreach (TeleportController teleportCompare in interactObj.transform.parent.GetComponentsInChildren<TeleportController>(true)) 
         {
             fDistLocal = Vector3.Distance(teleportCompare.gameObject.transform.position, gameObject.transform.position);
             if ((teleportClosest==null || fDistLocal < fDistMin)  // closest teleport
@@ -91,11 +90,12 @@ public class TeleportController : SoundCollider {
     }
 
 	protected override void OnHit(AudioSource audioSrc, GameObject objOther) {
-        if (teleportClosest != null) 
+        Rigidbody rb = objOther.GetComponent<Rigidbody>();
+        if (rb != null && rb.velocity.magnitude > 0.1f)     // don't teleport if just on object! 
         {
-            Rigidbody rb = objOther.GetComponent<Rigidbody>();
-            if (rb != null && rb.velocity.magnitude > 0.1f)     // don't teleport if just on object! 
+            if (teleportClosest != null) 
             {
+                FindClosestTeleport();  //when grabbed, search for closest teleport object within same parent
                 StartCoroutine(teleportClosest.PulseEcho(objOther));
 
                 //reverse velocity for new forward direction
