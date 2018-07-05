@@ -96,17 +96,20 @@ public class GameManager : Singleton<GameManager>
          sceneController = sceneControllerNew;
     }
 
+    public void StageNewScene(string nameSceneNext) 
+    {
+        sceneController.SceneStage(nameSceneNext);
+    }
+
     public bool LoadNewScene(string nameSceneNext) 
     {
-        if (state != GAME_STATE.STATE_FINISHED)
+        if (state != GAME_STATE.STATE_FINISHED && !string.IsNullOrEmpty(nameSceneNext))
         {
             Debug.LogWarning(string.Format("[GameManager] Attempting to load new scene '{0}' but not in finished state", nameSceneNext));
             return false;
         }
         state = GAME_STATE.STATE_NEXT_LEVEL;
-        if (sceneController != null) {
-            sceneController.SceneLoad(nameSceneNext);
-        }
+        sceneController.SceneLoad(nameSceneNext);
         return true;
     }
 

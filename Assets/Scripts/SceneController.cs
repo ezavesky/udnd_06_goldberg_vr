@@ -35,7 +35,17 @@ public class SceneController : MonoBehaviour {
         // finish scene with our current scene
         SceneLoad();
 	}
-	
+
+    // called to prep next stage
+    public void SceneStage(string strName) 
+    {
+        if (!string.IsNullOrEmpty(strName)) 
+        {
+            nameSceneNext = strName;
+            Debug.Log(string.Format("[SceneController]: Staging next scene '{0}'", strName));
+        }
+    }
+
     // called by a goal or game manager
     public void SceneLoad(string strName = null) 
     {
@@ -46,6 +56,7 @@ public class SceneController : MonoBehaviour {
         if (string.IsNullOrEmpty(nameSceneNext) && !string.IsNullOrEmpty(nameSceneMain)) 
         {
             nameSceneNext = nameSceneMain;
+            Debug.Log(string.Format("[SceneController]: Loading from main scene '{0}'", nameSceneMain));
         }
 
         if (headsetFade)        // if we have a valid fade, attempt to do that first
@@ -67,7 +78,6 @@ public class SceneController : MonoBehaviour {
 	protected void HeadsetFadeComplete(object sender, HeadsetFadeEventArgs args) 
     {
         StartCoroutine(LoadAsyncScene(nameSceneNext));
-        nameSceneNext = null;
 	}
 
     // enumeror for scene load completion

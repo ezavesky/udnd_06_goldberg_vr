@@ -12,6 +12,10 @@ public class HintToggle: MonoBehaviour  {
     public AudioClip clipOn = null;
     public AudioClip clipOff = null;
     public bool enableHintTesting = false;
+    protected const float timeMaxClick = 0.75f;  // for 'warp' to next level, max interval between clicks
+    protected const int numMinClick = 3;    // for 'warp', min number of clicks 
+    protected float timeLastWarpClick = 0.0f;   // for 'warp', track last time of click
+    protected int numWarpClick = 0; // for 'warp', track number of clicks
 
 	void Start() 
 	{
@@ -59,6 +63,26 @@ public class HintToggle: MonoBehaviour  {
         }
 	}
 
+    public void WarpClick() 
+    {
+        if ((Time.fixedTime - timeLastWarpClick) < timeMaxClick)
+        {
+            numWarpClick++;
+            if (numWarpClick >= numMinClick) 
+            {
+                Debug.Log(string.Format("[HintToggle]: Trigger Level Warp, clicks {0} ", numWarpClick));
+                numWarpClick = 0;
+                GameManager.instance.LoadNewScene(null);
+            }
+        }
+        else 
+        {
+            numWarpClick = 0;
+        }
+        //Debug.Log(string.Format("[HintToggle]: Warp (now {0}, then {1}), clicks {2} ", Time.fixedTime, timeLastWarpClick, numWarpClick));
+        timeLastWarpClick = Time.fixedTime;
+    }
+
 	public void EnableHints() 
 	{
         GameManager.instance.state = GameManager.GAME_STATE.STATE_HINTS;
@@ -79,6 +103,7 @@ public class HintToggle: MonoBehaviour  {
                 AudioSource.PlayClipAtPoint(clipOff, Camera.main.transform.position);
             }
             GameManager.instance.state = GameManager.GAME_STATE.STATE_RETURN_TO_LAST;
+            WarpClick();
 		}
 		foreach (GameObject objHint in listHints) 
 		{

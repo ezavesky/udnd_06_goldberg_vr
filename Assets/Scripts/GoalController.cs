@@ -26,7 +26,12 @@ public class GoalController : SoundCollider {
 
     public void TeleportUser(bool bInitial) {
         //valid task, enable final teleport!
-        VRTK_DestinationPoint teleportDestination = bInitial ? objTeleportInitial : objTeleportFinal;
+        VRTK_DestinationPoint teleportDestination = objTeleportFinal;
+        if (bInitial) 
+        {
+            teleportDestination = objTeleportInitial;
+            GameManager.instance.StageNewScene(nameSceneNext);       //prep next scene
+        }
         if (teleportDestination != null) {
             DoTeleport(teleportDestination);
         }

@@ -66,12 +66,19 @@ included below.
   tool. 
     * ![Level 4 - Teleporters](docs/play_4_teleport.jpg)
 
-
 ### Hint Replay
 Want to see all of the levels in action? You can enable hint 
 testing to watch everything play through.  Just navigate in the editor to the location below, enable testing, and play the
 game. 
 ![Hint Replay Tool](docs/hint_player_shortcut.jpg)
+
+### Level Warping
+Okay, some levels are pretty challenging.  So, to see all of
+them, the user can *quickly* triple click the left (*hint*) grip tool.
+Details of the warp code are found in the `Assets/Scrtips/HintToggle.cs` script.
+Upon the last release, the user will be teleported to the 
+next level, starting as if the last level was completed.  This
+is fun to view, but should be used sparingly, cheater ;-).
 
 ## Data Sources
 * [winter hill 360 pano (skybox)](https://flic.kr/p/dU4VgM)
