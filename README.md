@@ -33,7 +33,8 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 
 
 ### Grabbing and Throwing
-* Collectable
+* **Collectable** - Each level contains at least 2 collectables (stars) that disappear with an active ball and reappear when
+the ball hits the floor.
 * **Goal** - Each level contains a goal object, often at the lowest point in the level.  
    * When the ball touches the goal (through correct gameplay), fanfare is played and the player can transport to the exit teleport.
 * **Scene Loading** - Between levels (scenes), the camera will fade to black.  Upon complete level load, the user will teleport to the next starting position and fade out of black.
@@ -92,3 +93,32 @@ is fun to view, but should be used sparingly, cheater ;-).
 * [boxfan sound](https://freesound.org/people/n_audioman/sounds/294460/)
 * [trampoline sound](https://freesound.org/people/duckduckpony/sounds/130510/)
 
+
+## User Feedback
+Due to a compressed timeline, user testing was limited to a few
+sessions when the game was almost complete.  Comments from
+different users (most have some to significant VR experience)
+is summarized below.
+
+* **Challenging Levels** - Most levels presented at least moderate
+  challenge to the users. While this may prevent progress
+  through the game, this was somewhat acceptable.
+* **Additional Training Required** - The information panels
+  wither either insufficient or ignored by most users.  Instead,
+  they often applied similar interaction methods from other 
+  games but those patterns did not always map.
+* **Tool Manipulation** - Some users wanted to be able to 
+  manipulate tools other then by grabbing it.  This desire
+  was localized to others who used the Oculus' touchpad
+  more extensively, but it is worth noting.  Unfortunately,
+  changing the grab and manipulation mechanics would violate
+  the rubric standards for this game.
+
+### Future Revisions
+Some future revisions, were time available, are included 
+below.
+
+* **Additional FX/sound** - To keep the game interesting.
+* **Easier demo mechanics** - Some users had a hard time 
+  testing their creations, leading to some wasted/frustrated
+  sessions.
