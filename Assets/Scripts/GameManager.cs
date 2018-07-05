@@ -68,7 +68,6 @@ public class GameManager : Singleton<GameManager>
         {
             //TODO: other game mechanics when state changes?
             if (value == GAME_STATE.STATE_RETURN_TO_LAST) {
-                GAME_STATE stateTemp = _state;
                 _state = _stateLast;    
             }
             else if (value == GAME_STATE.STATE_NEXT_LEVEL) {
@@ -171,11 +170,16 @@ public class GameManager : Singleton<GameManager>
         return true;
     }
 
-    public void ResetCollectables() 
+    public void ResetCollectables(bool bClearAll=false) 
     {
         //reset collectables for a level because the ball fell
         if (collectableDict.Count == 0) 
         {
+            return;
+        }
+        else if (bClearAll) 
+        {
+            collectableDict.Clear();
             return;
         }
         foreach (KeyValuePair<int, GameObject> pairC in collectableDict) 

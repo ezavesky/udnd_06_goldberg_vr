@@ -9,6 +9,7 @@ public class GoalController : SoundCollider {
     public VRTK_DestinationPoint objTeleportInitial;
     public string nameSceneNext = "";
     protected float delayTeleport = 5.0f;
+    public GameObject objHintsParent = null;
 
 	protected override void OnHit(AudioSource audioSrc, GameObject objOther) {
         if (!GameManager.instance.finishedLevel) 

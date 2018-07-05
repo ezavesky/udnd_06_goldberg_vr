@@ -10,7 +10,7 @@ public class TeleportObjToggle : MonoBehaviour
 
     public bool RediscoverTeleporters(GameObject objParent) 
     {
-        VRTK_DestinationPoint[] addObjs = objParent.GetComponentsInChildren<VRTK_DestinationPoint>();  //  .FindGameObjectsWithTag(retoggleTags[i]);
+        VRTK_DestinationPoint[] addObjs = objParent.GetComponentsInChildren<VRTK_DestinationPoint>(true);  //  .FindGameObjectsWithTag(retoggleTags[i]);
         if ((addObjs == null) || (addObjs.Length == 0)) 
         {
             return false;

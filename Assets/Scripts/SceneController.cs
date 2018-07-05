@@ -116,6 +116,7 @@ public class SceneController : MonoBehaviour {
 
         // finally change the state back to initial
         GameManager.instance.state = GameManager.GAME_STATE.STATE_INITIAL;
+        GameManager.instance.ResetCollectables(true);
         GoalController sceneGoal = null;
 
         // on complete, find all of the collectables under new scene
@@ -131,6 +132,10 @@ public class SceneController : MonoBehaviour {
             if (localSceneGoal != null) 
             {
                 sceneGoal = localSceneGoal;
+                if (hintController != null)            //rediscover hints in new scene
+                {
+                    hintController.RediscoverHints(localSceneGoal.objHintsParent);
+                }
             }
 
             //start collectable rediscover
@@ -138,11 +143,7 @@ public class SceneController : MonoBehaviour {
 
         }   //end search of goal
 
-        //rediscover hints in new scene
-        if (hintController != null) 
-        {
-            hintController.RediscoverHints(true, sceneNew);
-        }
+
         // teleport user to spawn within new scene
         if (sceneGoal) 
         {
