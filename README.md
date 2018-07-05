@@ -43,6 +43,36 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * **Levels** - Each level will vertically stack on other levels after completion.
     * **Hints** - To assist users in each level, they can activate a *hint mode* with the left grip.  Collectables are deactivated while in hint mode.
 
+## Walkthrough
+Snapshots of the overall and individual levels are 
+included below.
+
+* **Ovearall** - A view from above of all levels simultaneously
+  loaded and visualized.
+    * ![Game Overview Image](docs/play_0_overall.jpg)
+* **Level 1** - This level is a skillset building level that
+  requires the user to understand plank placement and 
+  how to manipulate the tools in a scene.
+    * ![Level 1 - Planks](docs/play_1_planks.jpg)
+* **Level 2** - This level uses fans and planks to move
+  a marble uphill to its destinatin.
+    * ![Level 2 - Fans](docs/play_2_fans.jpg)
+* **Level 3** - This level is probably the most difficult 
+  because it requires the use of some trampolines or 
+  complicated planks to collect all stars.
+    * ![Level 3 - Trampolines](docs/play_3_trampoline.jpg)
+* **Level 4** - The final level combines the need for all
+  tools and provides an opportunity to use the teleport
+  tool. 
+    * ![Level 4 - Teleporters](docs/play_4_teleport.jpg)
+
+
+### Hint Replay
+Want to see all of the levels in action? You can enable hint 
+testing to watch everything play through.  Just navigate in the editor to the location below, enable testing, and play the
+game. 
+![Hint Replay Tool](docs/hint_player_shortcut.jpg)
+
 ## Data Sources
 * [winter hill 360 pano (skybox)](https://flic.kr/p/dU4VgM)
 * [girl in backyard - persona photo](https://www.pexels.com/photo/girl-staring-at-the-sky-630770/)
@@ -55,8 +85,3 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 * [boxfan sound](https://freesound.org/people/n_audioman/sounds/294460/)
 * [trampoline sound](https://freesound.org/people/duckduckpony/sounds/130510/)
 
-## Walkthrough
-Want to see all of the levels in action? You can enable hint 
-testing to watch everything play through.  Just navigate in the editor to the location below, enable testing, and play the
-game. 
-![Hint Replay Tool](docs/hint_player_shortcut.jpg)
