@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour {
     public TeleportObjToggle teleporterController = null;
     public HintToggle hintController = null;
     protected string nameSceneMain = null;
+    protected string nameSceneLast = null;
     protected GameObject objToolParent = null;
 	
     // [Header("Body Collision Settings")]
@@ -89,11 +90,16 @@ public class SceneController : MonoBehaviour {
             sceneNew = SceneManager.GetSceneByName(strName);
             if (!sceneNew.isLoaded)     //avoid loading if already there
             {
-                // load the scene
-                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);
+                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(strName, LoadSceneMode.Additive);    //load scene
+                AsyncOperation asyncUnload = null;  
+                if (!string.IsNullOrEmpty(nameSceneLast) && !string.Equals(nameSceneLast, nameSceneMain)) //unload old scenegj
+                {
+                    SceneManager.UnloadSceneAsync(nameSceneLast);
+                }
+                nameSceneLast = strName;
 
                 // Wait until the asynchronous scene fully loads
-                while (!asyncLoad.isDone)
+                while (!asyncLoad.isDone || (asyncUnload!=null && !asyncUnload.isDone))
                 {
                     yield return null;
                 }   //end wait for scene load
@@ -107,7 +113,7 @@ public class SceneController : MonoBehaviour {
         }
       
         // if we loaded the same scene as the initial scene, clear all play objects
-        if (string.Equals(sceneNew.name, nameSceneMain) && objToolParent!=null) 
+        if (/* string.Equals(sceneNew.name, nameSceneMain) && */  objToolParent!=null) 
         {
             foreach (Transform child in objToolParent.transform) {
                 GameObject.Destroy(child.gameObject);
