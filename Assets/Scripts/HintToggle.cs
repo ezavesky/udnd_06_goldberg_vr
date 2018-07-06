@@ -64,7 +64,7 @@ public class HintToggle: MonoBehaviour  {
         if ((Time.fixedTime - timeLastWarpClick) < timeMaxClick)
         {
             numWarpClick++;
-            if (numWarpClick >= numMinClick) 
+            if (numWarpClick >=(numMinClick - 1)) 
             {
                 Debug.Log(string.Format("[HintToggle]: Trigger Level Warp, clicks {0} ", numWarpClick));
                 numWarpClick = 0;
