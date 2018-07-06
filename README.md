@@ -2,9 +2,39 @@
 
 This project is part of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [VR Developer Nanodegree](https://www.udacity.com/course/vr-developer-nanodegree--nd017).
 
-## Versions
-- Unity 2017.2.0f3
 
+## Design and Gameplay
+Initial design and tracking is documented in [design docs](docs/design.pdf).  It may be a litle old, but the general goals and
+ideas hold true for the project.
+
+### User Feedback
+Due to a compressed timeline, user testing was limited to a few
+sessions when the game was almost complete.  Comments from
+different users (most have some to significant VR experience)
+is summarized below.
+
+* **Challenging Levels** - Most levels presented at least moderate
+  challenge to the users. While this may prevent progress
+  through the game, this was somewhat acceptable.
+* **Additional Training Required** - The information panels
+  wither either insufficient or ignored by most users.  Instead,
+  they often applied similar interaction methods from other 
+  games but those patterns did not always map.
+* **Tool Manipulation** - Some users wanted to be able to 
+  manipulate tools other then by grabbing it.  This desire
+  was localized to others who used the Oculus' touchpad
+  more extensively, but it is worth noting.  Unfortunately,
+  changing the grab and manipulation mechanics would violate
+  the rubric standards for this game.
+
+### Future Revisions
+Some future revisions, were time available, are included 
+below.
+
+* **Additional FX/sound** - To keep the game interesting.
+* **Easier demo mechanics** - Some users had a hard time 
+  testing their creations, leading to some wasted/frustrated
+  sessions.
 ## Rubric Checks
 ### Iniital Setup
 * **SteamVR** - This project supports SteamVR and others via the VRTK
@@ -89,6 +119,9 @@ next level, starting as if the last level was completed.  This
 is fun to view, but should be used sparingly, cheater ;-).
 
 ## Data Sources
+Some assets were used from the open source community and are
+documented below.
+
 * [winter hill 360 pano (skybox)](https://flic.kr/p/dU4VgM)
 * [girl in backyard - persona photo](https://www.pexels.com/photo/girl-staring-at-the-sky-630770/)
 * [toy character - persona photo](https://www.pexels.com/photo/shallow-focus-photography-of-luigi-plastic-figure-209679/)
@@ -100,32 +133,6 @@ is fun to view, but should be used sparingly, cheater ;-).
 * [boxfan sound](https://freesound.org/people/n_audioman/sounds/294460/)
 * [trampoline sound](https://freesound.org/people/duckduckpony/sounds/130510/)
 
+### Versions
+- Unity 2017.2.0f3
 
-## User Feedback
-Due to a compressed timeline, user testing was limited to a few
-sessions when the game was almost complete.  Comments from
-different users (most have some to significant VR experience)
-is summarized below.
-
-* **Challenging Levels** - Most levels presented at least moderate
-  challenge to the users. While this may prevent progress
-  through the game, this was somewhat acceptable.
-* **Additional Training Required** - The information panels
-  wither either insufficient or ignored by most users.  Instead,
-  they often applied similar interaction methods from other 
-  games but those patterns did not always map.
-* **Tool Manipulation** - Some users wanted to be able to 
-  manipulate tools other then by grabbing it.  This desire
-  was localized to others who used the Oculus' touchpad
-  more extensively, but it is worth noting.  Unfortunately,
-  changing the grab and manipulation mechanics would violate
-  the rubric standards for this game.
-
-### Future Revisions
-Some future revisions, were time available, are included 
-below.
-
-* **Additional FX/sound** - To keep the game interesting.
-* **Easier demo mechanics** - Some users had a hard time 
-  testing their creations, leading to some wasted/frustrated
-  sessions.
