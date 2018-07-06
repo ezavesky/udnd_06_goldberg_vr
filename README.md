@@ -70,7 +70,7 @@ included below.
   tools and provides an opportunity to use the teleport
   tool. 
     * ![Level 4 - Teleporters](docs/play_4_teleport.jpg)
-    * [![Teleporter and All Tools Level](http://img.youtube.com/vi/kuDkOcv-n60/0.jpg)](https://youtu.be/kuDkOcv-n60)
+    * [![Teleporter and All Tools Level](http://img.youtube.com/vi/F7z9OvN9f3U/0.jpg)](https://youtu.be/F7z9OvN9f3U)
 * **Level 5** - Farewell and reset.
     * [![Closing Level](http://img.youtube.com/vi/UIxm4t8PSYw/0.jpg)](https://youtu.be/UIxm4t8PSYw)
 
