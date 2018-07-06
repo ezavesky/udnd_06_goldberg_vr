@@ -51,21 +51,28 @@ included below.
 * **Ovearall** - A view from above of all levels simultaneously
   loaded and visualized.
     * ![Game Overview Image](docs/play_0_overall.jpg)
+    * [![Introduction Level](http://img.youtube.com/vi/k7aXn-bIUHo/0.jpg)](https://youtu.be/k7aXn-bIUHo)
 * **Level 1** - This level is a skillset building level that
   requires the user to understand plank placement and 
   how to manipulate the tools in a scene.
     * ![Level 1 - Planks](docs/play_1_planks.jpg)
+    * [![Plank Level](http://img.youtube.com/vi/OPTuixF6Btk/0.jpg)](https://youtu.be/OPTuixF6Btk)
 * **Level 2** - This level uses fans and planks to move
   a marble uphill to its destinatin.
     * ![Level 2 - Fans](docs/play_2_fans.jpg)
+    * [![Uphill Fan Level](http://img.youtube.com/vi/fuLmLULBMSw/0.jpg)](https://youtu.be/fuLmLULBMSw)
 * **Level 3** - This level is probably the most difficult 
   because it requires the use of some trampolines or 
   complicated planks to collect all stars.
     * ![Level 3 - Trampolines](docs/play_3_trampoline.jpg)
+    * [![Trampoline Level](http://img.youtube.com/vi/RFF4IhFmjmc/0.jpg)](https://youtu.be/RFF4IhFmjmc)
 * **Level 4** - The final level combines the need for all
   tools and provides an opportunity to use the teleport
   tool. 
     * ![Level 4 - Teleporters](docs/play_4_teleport.jpg)
+    * [![Teleporter and All Tools Level](http://img.youtube.com/vi/kuDkOcv-n60/0.jpg)](https://youtu.be/kuDkOcv-n60)
+* **Level 5** - Farewell and reset.
+    * [![Closing Level](http://img.youtube.com/vi/UIxm4t8PSYw/0.jpg)](https://youtu.be/UIxm4t8PSYw)
 
 ### Hint Replay
 Want to see all of the levels in action? You can enable hint 
