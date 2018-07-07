@@ -14,9 +14,9 @@ public class StarController : SoundCollider {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		// ...also rotate around the World's Y axis
-        transform.Rotate(Vector3.up * Time.deltaTime * smooth, Space.World);
+        transform.Rotate(Vector3.up * Time.fixedDeltaTime * smooth, Space.World);
 		//Debug.Log(string.Format("Rotate: {0}", transform.eulerAngles));
 	}
 

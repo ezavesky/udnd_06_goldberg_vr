@@ -16,10 +16,10 @@ public class FanController : SoundCollider {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (objBlade != null)   // spin the blade
         {
-            objBlade.transform.Rotate(Vector3.forward * Time.deltaTime * smooth, Space.Self);
+            objBlade.transform.Rotate(Vector3.forward * Time.fixedDeltaTime * smooth, Space.Self);
         }
 	}
 
