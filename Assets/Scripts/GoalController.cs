@@ -25,6 +25,7 @@ public class GoalController : SoundCollider {
 			rb.isKinematic = true;
 			rb.angularVelocity = Vector3.zero;
 			rb.velocity = Vector3.zero;
+            TeleportUser(GOAL_TARGET.TARGET_FINAL);        // teleport directly
             Invoke("TeleportFinal", delayTeleport);
 		}
 	}
@@ -48,7 +49,6 @@ public class GoalController : SoundCollider {
 
     protected void TeleportFinal() 
     {
-        TeleportUser(GOAL_TARGET.TARGET_FINAL);        // teleport directly
         GameManager.instance.LoadNewScene(nameSceneNext);       //load next scene
     }
 
