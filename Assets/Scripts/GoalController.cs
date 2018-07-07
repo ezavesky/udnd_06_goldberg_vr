@@ -7,9 +7,13 @@ public class GoalController : SoundCollider {
     protected bool BallSticks = true;  // for now always stop ball (to avoid falling to ground)
     public VRTK_DestinationPoint objTeleportFinal;
     public VRTK_DestinationPoint objTeleportInitial;
+    public VRTK_DestinationPoint objTeleportInitialInformative;
     public string nameSceneNext = "";
     protected float delayTeleport = 5.0f;
     public GameObject objHintsParent = null;
+
+    // added compliant state to pass VRND rubrics
+    public enum GOAL_TARGET { TARGET_FINAL=1, TARGET_INITIAL_COMPLIANT, TARGET_INITIAL_INFORMATIVE };
 
 	protected override void OnHit(AudioSource audioSrc, GameObject objOther) {
         if (!GameManager.instance.finishedLevel) 
@@ -25,25 +29,26 @@ public class GoalController : SoundCollider {
 		}
 	}
 
-    public void TeleportUser(bool bInitial) {
+    public void TeleportUser(GOAL_TARGET target) {
         //valid task, enable final teleport!
         VRTK_DestinationPoint teleportDestination = objTeleportFinal;
-        if (bInitial) 
+        if (target != GOAL_TARGET.TARGET_FINAL) 
         {
-            teleportDestination = objTeleportInitial;
+            teleportDestination = (target == GOAL_TARGET.TARGET_INITIAL_COMPLIANT) 
+                                    ? objTeleportInitial : objTeleportInitialInformative;
             GameManager.instance.StageNewScene(nameSceneNext);       //prep next scene
         }
         if (teleportDestination != null) {
             DoTeleport(teleportDestination);
         }
         else {
-            Debug.LogWarning(string.Format("[GoalController]: Attempting to teleport {0}, but destination not set.", bInitial));
+            Debug.LogWarning(string.Format("[GoalController]: Teleport with state {0}, but destination not set.", target));
         }
     }
 
     protected void TeleportFinal() 
     {
-        TeleportUser(false);        // teleport directly
+        TeleportUser(GOAL_TARGET.TARGET_FINAL);        // teleport directly
         GameManager.instance.LoadNewScene(nameSceneNext);       //load next scene
     }
 

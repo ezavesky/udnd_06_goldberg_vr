@@ -541,7 +541,7 @@ Prefab:
         type: 2}
       propertyPath: objTeleportInitial
       value: 
-      objectReference: {fileID: 1114948211}
+      objectReference: {fileID: 296241168}
     - target: {fileID: 114435893306917688, guid: 54138d8c478ab403db922dc264921750,
         type: 2}
       propertyPath: nameSceneNext
@@ -556,6 +556,11 @@ Prefab:
       propertyPath: objHintsParent
       value: 
       objectReference: {fileID: 612142396}
+    - target: {fileID: 114435893306917688, guid: 54138d8c478ab403db922dc264921750,
+        type: 2}
+      propertyPath: objTeleportInitialInformative
+      value: 
+      objectReference: {fileID: 998488459}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54138d8c478ab403db922dc264921750, type: 2}
   m_IsPrefabParent: 0
@@ -861,6 +866,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a9011ffb03094efc8ba8e695f5803a0, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &296241168 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114298467900582908, guid: 8a9011ffb03094efc8ba8e695f5803a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 296241167}
+  m_Script: {fileID: 11500000, guid: f6512be739a547c4f8c3323a1bdb9708, type: 3}
 --- !u!1001 &316210696
 Prefab:
   m_ObjectHideFlags: 0
@@ -3105,6 +3116,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224764608524119430, guid: f69495e6eb25949b8959f83291a60899,
     type: 2}
   m_PrefabInternal: {fileID: 998488457}
+--- !u!114 &998488459 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114471575110495574, guid: f69495e6eb25949b8959f83291a60899,
+    type: 2}
+  m_PrefabInternal: {fileID: 998488457}
+  m_Script: {fileID: 11500000, guid: f6512be739a547c4f8c3323a1bdb9708, type: 3}
 --- !u!1 &1067119516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,12 +3374,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4179995836808526, guid: 3c0409a60c7c547ff853732d4d978757,
     type: 2}
   m_PrefabInternal: {fileID: 1096122193}
---- !u!114 &1114948211 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114471575110495574, guid: f69495e6eb25949b8959f83291a60899,
-    type: 2}
-  m_PrefabInternal: {fileID: 998488457}
-  m_Script: {fileID: 11500000, guid: f6512be739a547c4f8c3323a1bdb9708, type: 3}
 --- !u!1 &1134536073
 GameObject:
   m_ObjectHideFlags: 0

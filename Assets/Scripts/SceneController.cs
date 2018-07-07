@@ -18,6 +18,8 @@ public class SceneController : MonoBehaviour {
     public string nameSceneNext = null;
     protected float timeSceneLoadFade = 1.0f;
 
+    public bool compliantInitialTeleport = true;    // flag for more fun or more compliant start?
+    
 	// Use this for initialization
 	void Start () {
         GameManager.instance.RegisterSceneController(this);
@@ -153,7 +155,9 @@ public class SceneController : MonoBehaviour {
         // teleport user to spawn within new scene
         if (sceneGoal) 
         {
-            sceneGoal.TeleportUser(true);
+            sceneGoal.TeleportUser(compliantInitialTeleport
+                ? GoalController.GOAL_TARGET.TARGET_INITIAL_COMPLIANT 
+                : GoalController.GOAL_TARGET.TARGET_INITIAL_INFORMATIVE);
         }
 
         // unfade the screen

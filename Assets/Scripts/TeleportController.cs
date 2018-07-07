@@ -11,7 +11,7 @@ public class TeleportController : SoundCollider {
     protected bool isEchoing = false;
     public AudioClip soundInactive = null;
     public float durationEchoPulse = 1.0f;
-    
+
 	// Use this for initialization
 	void Start () {
         if (gameObject.transform.childCount != 0)   // attempt to get rotating ring child
