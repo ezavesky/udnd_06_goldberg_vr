@@ -61,9 +61,8 @@ public class HandController : MonoBehaviour {
         if (grabController) 
         {
             GameObject objDelete = grabController.GetGrabbedObject();
-            if (objDelete) 
+            if (objDelete && DeleteCurrentObject(objDelete))
             {
-                DeleteCurrentObject(objDelete);
                 return;
             }
         }
@@ -98,9 +97,9 @@ public class HandController : MonoBehaviour {
     {
         objectMenuManager.SpawnCurrentObject();
     }
-    private void DeleteCurrentObject(GameObject objTarget)
+    private bool DeleteCurrentObject(GameObject objTarget)
     {
-        objectMenuManager.DeleteCurrentObject(objTarget);
+        return objectMenuManager.DeleteCurrentObject(objTarget);
     }
 
     private void SwipeLeft()

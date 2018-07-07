@@ -7,6 +7,7 @@ public class ObjectMenuManager : MonoBehaviour {
     public GameObject objectPrefabUnique;  //confirms that there is only ONE instance of this prefab type
     protected int currentObject = 0;
     protected List<GameObject> objectList = new List<GameObject>(); //handled automatically at start
+    protected Dictionary<int, int> dictPrefabs = new Dictionary<int, int>();
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,7 @@ public class ObjectMenuManager : MonoBehaviour {
 
         objNew.SetActive(false);
         objectList.Add(objNew); //save for use later
+        dictPrefabs.Add(objNew.GetInstanceID(), objectList.Count-1);    //index to avoid delete
         return (objectList.Count - 1);
     }
 
@@ -103,13 +105,14 @@ public class ObjectMenuManager : MonoBehaviour {
         //TODO: maybe allow user to immediately grab object if trigger is down?
     }
 
-    public void DeleteCurrentObject(GameObject objTarget) 
+    public bool DeleteCurrentObject(GameObject objTarget) 
     {
-        if (!objTarget) 
+        if (!objTarget || dictPrefabs.ContainsKey(objTarget.GetInstanceID()))  // bad object or deleting our prefab!?
         {
-            return;
+            return false;
         }
         Destroy(objTarget);
+        return true;
     }
     
     protected static IEnumerator FadeOut3D (Transform t, float targetAlpha, bool isVanish, float duration)
