@@ -93,9 +93,9 @@ public class TeleportController : SoundCollider {
         Rigidbody rb = objOther.GetComponent<Rigidbody>();
         if (rb != null && rb.velocity.magnitude > 0.1f)     // don't teleport if just on object! 
         {
+            FindClosestTeleport();  //always force refresh of closest item
             if (teleportClosest != null) 
             {
-                FindClosestTeleport();  //when grabbed, search for closest teleport object within same parent
                 StartCoroutine(teleportClosest.PulseEcho(objOther));
 
                 //reverse velocity for new forward direction
